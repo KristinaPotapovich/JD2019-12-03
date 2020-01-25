@@ -1,4 +1,4 @@
-package by.it.Plugatar.jd01_04;
+package by.it.plugatar.jd01_04;
 
 
 import java.io.*;

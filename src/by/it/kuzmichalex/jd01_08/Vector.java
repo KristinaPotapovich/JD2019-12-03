@@ -1,7 +1,7 @@
 package by.it.kuzmichalex.jd01_08;
 
 class Vector extends Var {
-    double[] value;
+    private double[] value;
 
     /**
      * construct from double[]
@@ -44,6 +44,10 @@ class Vector extends Var {
         return returnStrBuffer.toString();
     }
 
+    public double[] getValue() {
+        return value;
+    }
+
     /////////////////////////////// add
     @Override
     public Var add(Var rightOperand) {
@@ -55,7 +59,7 @@ class Vector extends Var {
     public Var add(Scalar leftOperand) {
         double[] returnVector = new double[this.value.length];
         for (int i = 0; i < this.value.length; i++) {
-            returnVector[i] = this.value[i] + leftOperand.value;
+            returnVector[i] = this.value[i] + leftOperand.getValue();
         }
         return new Vector(returnVector);
     }
@@ -103,7 +107,7 @@ class Vector extends Var {
     public Var mul(Scalar leftOperand) {
         double[] returnVector = new double[this.value.length];
         for (int i = 0; i < this.value.length; i++) {
-            returnVector[i] = this.value[i] * leftOperand.value;
+            returnVector[i] = this.value[i] * leftOperand.getValue();
         }
         return new Vector(returnVector);
     }
@@ -125,14 +129,16 @@ class Vector extends Var {
     //Matrix*Vector
     @Override
     public Var mul(Matrix leftOperand) {
-        if (leftOperand.value[0].length != this.value.length) {
+        double[][] leftOperandValue = leftOperand.getValue();
+
+        if (leftOperandValue[0].length != this.value.length) {
             System.out.println("Умножение матрицы на вектор невозможно: Кол-во столбцов матрицы не соответствует вектору ");
             return null;
         }
-        double[] returnVector = new double[leftOperand.value.length];
-        for (int y = 0; y < leftOperand.value.length; y++) {
-            for (int x = 0; x < leftOperand.value[0].length; x++) {
-                returnVector[y] += leftOperand.value[y][x] * this.value[x];
+        double[] returnVector = new double[leftOperandValue.length];
+        for (int y = 0; y < leftOperandValue.length; y++) {
+            for (int x = 0; x < leftOperandValue[0].length; x++) {
+                returnVector[y] += leftOperandValue[y][x] * this.value[x];
             }
         }
         return new Vector(returnVector);

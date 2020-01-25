@@ -1,7 +1,7 @@
 package by.it.kuzmichalex.jd01_08;
 
 class Matrix extends Var {
-    double[][] value;
+    private double[][] value;
 
     /**
      * construct from double[][]
@@ -64,6 +64,10 @@ class Matrix extends Var {
         return retStrBuffer.toString();
     }
 
+    public double[][] getValue() {
+        return value;
+    }
+
     //////////////////////Сложения с матрицей
     @Override
     public Var add(Var rightOperand) {
@@ -76,7 +80,7 @@ class Matrix extends Var {
         double[][] returnMatrix = new double[this.value.length][this.value[0].length];
         for (int y = 0; y < this.value.length; y++) {
             for (int x = 0; x < this.value[0].length; x++) {
-                returnMatrix[y][x] = this.value[y][x] + leftOperand.value;
+                returnMatrix[y][x] = this.value[y][x] + leftOperand.getValue();
             }
         }
         return new Matrix(returnMatrix);
@@ -115,7 +119,7 @@ class Matrix extends Var {
         double[][] returmMatrix = new double[this.value.length][this.value[0].length];
         for (int y = 0; y <this.value.length ; y++) {
             for (int x = 0; x <this.value[0].length ; x++) {
-                returmMatrix[y][x]=this.value[y][x]*leftOperand.value;
+                returmMatrix[y][x]=this.value[y][x]*leftOperand.getValue();
             }
         }
         return new Matrix(returmMatrix);

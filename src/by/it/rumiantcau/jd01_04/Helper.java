@@ -22,7 +22,7 @@ public class Helper {
 
 
 
- static void sort(Double[] arr){
+ static void sort(double[] arr){
 //double a;
 //boolean sort = false;
      System.out.println("Сортировка массива пузырьком");

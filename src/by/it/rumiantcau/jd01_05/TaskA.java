@@ -8,10 +8,6 @@ public class TaskA {
         taskA2();
         taskA3();
 
-
-
-
-
     }
 
 
@@ -44,15 +40,29 @@ public class TaskA {
 
     private static void taskA3() {
         System.out.println("Zadanie A3");
-        double f,x=12.1,a=-5;
-        while (a<=12){
-            f = exp(a*x) - 3.75*a;
+        double y, x = 12.1, a=-5;
+        while (a <= 12){
+           y = pow(E, a * x) - 3.45*a;
 
            // f = pow(E, a*x) - 3.75*a;
            // System.out.println("f = "+f+" pri a ="+a);
-            System.out.printf("При a = %6.2f f=%g\n",a,f);
-            a = a+3.75;
+            System.out.printf("При a = %6.2f f=%g\n", a, y);
+            a = a + 3.75;
         }
+
+        /*
+          final double x = 12.1;
+        double a;
+        double y;
+
+        for (a = -5.0; a <= 12.0; a += 3.75) {
+            y = pow(E, a * x) - 3.45*a;
+            System.out.println(" При a=" + a + "y=" + y);
+
+        }
+         */
+
+
         System.out.println();
 
     }

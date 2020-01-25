@@ -1,5 +1,7 @@
 package by.it.shpakovskiy.jd01_08;
 
+import java.util.Arrays;
+
 class Scalar extends Var {
     private double value;
 
@@ -24,51 +26,124 @@ class Scalar extends Var {
     }
 
     @Override
-    String getClassName() {
-        return "Scalar";
-    }
-
-    private Var getResult(Var other, String operation) {
-        if (other.getClassName().equals("Scalar")) {
-            Scalar otherScalar = (Scalar) other;
-            if (operation.equals("add")) {
-                return new Scalar(this.value + otherScalar.value);
-            }
-            if (operation.equals("sub")){
-                return new Scalar(this.value - otherScalar.value);
-            }
-            if (operation.equals("mul")){
-                return new Scalar(this.value * otherScalar.value);
-            }
-            if (operation.equals("div")){
-                return new Scalar(this.value / otherScalar.value);
-            }
-        }
-        return getDefaultResult(this);
+    public String toString() {
+        return String.valueOf(value);
     }
 
     @Override
     public Var add(Var other) {
-        return getResult(other,"add");
+        return other.add(this);
+    }
+
+    @Override
+    public Var add(Scalar other) {
+        return new Scalar(this.value + other.value);
+    }
+
+    @Override
+    public Var add(Vector other) {
+        return other.add(this);
+    }
+
+    @Override
+    public Var add(Matrix other) {
+        return other.add(this);
     }
 
     @Override
     public Var sub(Var other) {
-        return getResult(other,"sub");
+        return other.sub(this);
+    }
+
+    @Override
+    public Var sub(Scalar other) {
+        return new Scalar(other.value - this.value);
+    }
+
+    @Override
+    public Var sub(Vector other) {
+        double[] op1 = Arrays.copyOf(other.getValue(), other.getValue().length);
+        for (int i = 0; i < op1.length; i++) {
+            op1[i] = op1[i] - value;
+        }
+        return new Vector(op1);
+    }
+
+    @Override
+    public Var sub(Matrix other) {
+        double[][] op1 = Arrays.copyOf(other.getValue(), other.getValue().length);
+        for (int i = 0; i < op1.length; i++) {
+            op1[i] = Arrays.copyOf(other.getValue()[i], other.getValue()[i].length);
+        }
+        for (int i = 0; i < op1.length; i++) {
+            for (int j = 0; j < op1[i].length; j++) {
+                op1[i][j] = op1[i][j] - value;
+            }
+
+        }
+        return new Matrix(op1);
     }
 
     @Override
     public Var mul(Var other) {
-        return getResult(other,"mul");
+        return other.mul(this);
+    }
+
+    @Override
+    public Var mul(Scalar other) {
+        return new Scalar(this.value * other.value);
+    }
+
+    @Override
+    public Var mul(Vector other) {
+        return other.mul(this);
+    }
+
+    @Override
+    public Var mul(Matrix other) {
+        return other.mul(this);
     }
 
     @Override
     public Var div(Var other) {
-        return getResult(other,"div");
+        return other.div(this);
     }
 
     @Override
-    public String toString() {
-        return String.valueOf(value);
+    public Var div(Scalar other) {
+        if (this.value != 0) {
+            return new Scalar(other.value / this.value);
+        }
+        return super.div(other);
+    }
+
+    @Override
+    public Var div(Vector other) {
+        if (value != 0) {
+            double[] op1 = Arrays.copyOf(other.getValue(), other.getValue().length);
+            for (int i = 0; i < op1.length; i++) {
+                op1[i] = op1[i] / value;
+            }
+            return new Vector(op1);
+        }
+        return super.div(other);
+    }
+
+    @Override
+    public Var div(Matrix other) {
+        if (value!=0){
+            double[][] op1 = Arrays.copyOf(other.getValue(), other.getValue().length);
+            for (int i = 0; i < op1.length; i++) {
+                op1[i] = Arrays.copyOf(other.getValue()[i], other.getValue()[i].length);
+            }
+            for (int i = 0; i < op1.length; i++) {
+                for (int j = 0; j < op1[i].length; j++) {
+                    op1[i][j] = op1[i][j]/value;
+                }
+
+            }
+            return new Matrix(op1);
+        }
+        return super.div(other);
     }
 }

@@ -1,5 +1,6 @@
 package by.it.ban.jd01_08;
 
+
 public class Runner {
     private static void print(Var var) {
         if (var != null)

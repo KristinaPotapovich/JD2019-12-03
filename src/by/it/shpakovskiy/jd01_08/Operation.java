@@ -1,6 +1,6 @@
 package by.it.shpakovskiy.jd01_08;
 
-public interface Operation {
+interface Operation {
     Var add(Var other);
 
     Var sub(Var other);
