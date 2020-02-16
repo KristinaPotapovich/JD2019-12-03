@@ -108,6 +108,10 @@ class Vector extends Var {
         return super.div(other);
     }
 
+    public double[] getValue() {
+        return value;
+    }
+
     @Override
     public String toString() {
         StringBuilder string = new StringBuilder("{");

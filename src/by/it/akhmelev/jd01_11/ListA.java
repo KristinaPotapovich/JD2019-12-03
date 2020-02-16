@@ -4,22 +4,26 @@ import java.util.*;
 
 public class ListA<T> implements List<T> {
 
-    private T[] elements = (T[]) new Object[]{};
-    private int size = 0;
+    private T[] elements = (T[]) new Object[10]; //создали контейнер для объектов
+    private int size = 0; //реальный размер коллекции
 
     @Override
-    public boolean add(T element) {
-        if (size >= elements.length) {
-            elements = Arrays.copyOf(elements, elements.length * 3 / 2 + 1);
+    public boolean add(T element) { //добавление нового елемента
+        if (size >= elements.length) { //проверим есть ли куда добавлять
+            //если некуда, то увеличим массив в 1.5 раза + 1
+            elements = Arrays.copyOf(elements, (elements.length * 3 / 2) + 1);
         }
-        elements[size++] = element;
-        return false;
+        elements[size++] = element; //добавляем элемент и потом увеличиваем размер коллеции.
+        return true; //говорим что все получилось
     }
 
     @Override
     public T remove(int index) {
         T element = elements[index];
-        System.arraycopy(elements, index + 1, elements, index, size - index - 1);
+        int count = size - index - 1; //сколько элементов перенести левее
+        //теперь делаем перенос
+        System.arraycopy(elements, index + 1, elements, index, count);
+        //и усеньшаем размер, а затем освобождаем последнюю ячейку
         elements[--size] = null;
         return element;
     }
@@ -50,7 +54,7 @@ public class ListA<T> implements List<T> {
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return size==0;
     }
 
     @Override

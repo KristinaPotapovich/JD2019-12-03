@@ -6,7 +6,8 @@ import java.util.regex.Pattern;
 
 public class TaskB2 {
     public static void main(String[] args) {
-        String poem = Poem.text.replaceAll("\n", " ").replaceAll("\\.\\.\\.", "");
+        String poem = Poem.text.replaceAll("\n", " ")
+                                .replaceAll("\\.\\.\\.", "");
         Pattern pattern = Pattern.compile("[^.!?]+");
         Matcher matcher = pattern.matcher(poem);
         String[] str = new String[0];

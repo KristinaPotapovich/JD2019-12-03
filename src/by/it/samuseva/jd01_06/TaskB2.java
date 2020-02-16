@@ -24,14 +24,17 @@ public class TaskB2 {
         String t = text.toString();
         String t1 = t.replaceAll("[-.,:!?]+", " ");
         t = t1.replaceAll("[ ]{2,}", " ");
-        String[] arraySentence = t.split("[\\\n]");
+        String[] arraySentence = t.split("[ ][\\\n]");
         int[] length = new int[arraySentence.length];
+        // trim кождой строки + определение дленны строки
+
         for (int i = 0; i < length.length; i++) {
+            arraySentence[i].trim();
             length[i]=arraySentence[i].length();
         }
         int[] length1 = Arrays.copyOf(length, length.length);
         Arrays.sort(length1);
-        for (int i = 0; i < length.length-1; i++) {
+       for (int i = 0; i < length.length-1; i++) {
             for (int j = 0; j < length.length; j++) {
                 if (length1[i] == length[j]){
                     if (length1[i]!=length1[i+1]) {
@@ -40,7 +43,15 @@ public class TaskB2 {
                     }
                 }
             }
-        }
+            if (i+1 == length.length-1) {
+                for (int j = 0; j < length.length; j++) {
+                    if (length1[i+1] == length[j]){
+                        System.out.println(arraySentence[j]);
+                        continue;
+                        }
+                    }
+            }
+       }
     }
 
 
