@@ -19,7 +19,39 @@ class Vector extends Var{
 
     @Override
     public Var add(Var other) {
-        return super.add(other);
+        if(other instanceof Vector){
+            double[] array=Arrays.copyOf(value,value.length);
+            for (int i = 0; i < this.value.length; i++) {
+                array[i] += ((Vector) other).value[i];
+            }
+            return new Vector(array);
+        }
+        else if(other instanceof Scalar){
+            double[] array=Arrays.copyOf(value,value.length);
+            for (int i = 0; i < this.value.length; i++) {
+                array[i] += ((Scalar) other).getValue();
+            }
+            return new Vector(array);
+        }else{
+            return super.add(other);
+        }
+    }
+
+    @Override
+    public Var sub(Var other) {
+
+            return super.sub(this);
+
+    }
+
+    @Override
+    public Var mul(Var other) {
+        return super.mul(other);
+    }
+
+    @Override
+    public Var div(Var other) {
+        return super.div(other);
     }
 
     @Override
