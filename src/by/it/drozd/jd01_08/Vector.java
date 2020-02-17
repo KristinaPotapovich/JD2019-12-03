@@ -64,7 +64,6 @@ class Vector extends Var{
             double sum=0;
             for (int i = 0; i < this.value.length; i++) {
                 array[i]*= ((Vector) other).value[i];
-
             }
             for (int i = 0; i < array.length; i++) {
                 sum+=array[i];
