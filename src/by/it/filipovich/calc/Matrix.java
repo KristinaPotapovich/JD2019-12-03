@@ -23,7 +23,7 @@ public class Matrix extends Var {
         double[][] arr = new double[a.length][b.length()];
         for (int i = 0; i < a.length; i++) {
             String[] mas = a[i].replaceAll("\\D"," ")
-                                .replaceAll(" {2,}", " ")
+                                .replaceAll(" +", " ")
                                 .trim()
                                 .split(" ");
             for (int j = 0; j < b.length(); j++) {

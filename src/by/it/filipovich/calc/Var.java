@@ -33,7 +33,7 @@ abstract class Var implements Operation {
     }
 
     static Var createVar(String operand) throws CalcException {
-        String a = operand.trim();
+        String a = operand.replaceAll("\\s", "");
         if(a.matches(Patterns.SCALAR))
             return new Scalar(a);
         else if(a.matches(Patterns.VECTOR))
@@ -41,17 +41,16 @@ abstract class Var implements Operation {
         else if(a.matches(Patterns.MATRIX))
             return new Matrix(a);
         else{
-            Var var = vars.get(operand);
+            Var var = vars.get(a);
             if (var != null) {
                 return var;
-            } else {
+            } else
                 throw new CalcException("Unknown expression: "+operand);
-            }
         }
     }
 
-    static void save(String key, Var value)
-    {
+    static void save(String key, Var value) throws CalcException {
         vars.put(key,value);
+        VarToFile.save(vars);
     }
 }

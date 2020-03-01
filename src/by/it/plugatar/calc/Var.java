@@ -16,6 +16,8 @@ abstract class Var {
 }
 */
 
+
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -51,6 +53,11 @@ public class Var implements Operation {
         throw new CalcException("Невозможно создать "+s);//return null
        // (vars.containsKey(s))
        // return vars.get(s);//Если содержит, то вернем соответствующий объект
+    }
+
+    static void save(String key, Var value) throws CalcException {
+        vars.put(key,value);
+        VarFile.save(vars);
     }
 
     static void printvar() {

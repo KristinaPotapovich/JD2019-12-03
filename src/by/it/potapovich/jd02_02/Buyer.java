@@ -1,5 +1,6 @@
 package by.it.potapovich.jd02_02;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -10,8 +11,7 @@ public class Buyer extends Thread implements Runnable, IBuyer, IUseBacket {
     private Backet backet;
     private Good good;
     private Map<Good, Integer> goods;
-    private Set<Good> backets;
-
+    private Map<Good, Integer> backets;
 
 
     Buyer(int num, Map<Good, Integer> goods, Backet backet) throws InterruptedException {
@@ -37,6 +37,7 @@ public class Buyer extends Thread implements Runnable, IBuyer, IUseBacket {
         takeBacket();
         chooseGoods();
         putGoodsToBacket();
+        goToQueue();
         goOut();
     }
 
@@ -55,7 +56,7 @@ public class Buyer extends Thread implements Runnable, IBuyer, IUseBacket {
     public void takeBacket() {
         //  if (name != null) {
         backet = new Backet();
-       chooseGoods();
+        chooseGoods();
 
 
         System.out.println(this + "взял корзину");
@@ -79,10 +80,10 @@ public class Buyer extends Thread implements Runnable, IBuyer, IUseBacket {
     public void goToQueue() {
         System.out.println(this + " пошел в очередь");
         QueueBuyer.add(this);
-        synchronized (this){
+        synchronized (this) {
             try {
                 this.wait();
-            }catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
@@ -92,43 +93,35 @@ public class Buyer extends Thread implements Runnable, IBuyer, IUseBacket {
 
     @Override
     public void putGoodsToBacket() {
-        // if (goods != null){
         int count = (int) (Math.random() * 4) + 1;
         for (int i = 0; i <= count; i++) {
             int index = (int) (Math.random() * 9);
             // Random random = new Random();
-           Good [] goodsArray = goods.keySet().toArray(new Good[0]);
+            Good[] goodsArray = goods.keySet().toArray(new Good[0]);
 
-           good = goodsArray[index];
-           if (backets == null){
-               backets = new HashSet<>();
-           }
-            if (good != null){
-                backets.add(good);
+            good = goodsArray[index];
+            int value = goods.get(good);
+            if (backets == null) {
+                backets = new HashMap<>();
+            }
+            if (good != null) {
+                backets.put(good, value);
                 chooseGoods();
                 System.out.println("Покупатель № " + this + "положил " + backets + "в корзину");
             }
-
         }
+    }
 
-
-            }
-
-
-
-
-        // backet.setBackets();
-
-        // goods = new LinkedHashMap<>();
-        //System.out.println(this + "положил товар в корзину");
-
-
-        //  }
-
-
-     @Override
+    @Override
     public void goOut() {
-        System.out.println(this + "вышел из магазина");
+        Dispatcher.buyerLeave();
+        --num;
+        int checkSum = 0;
+        for (Integer value : backets.values()) {
+            checkSum += value;
+        }
+        System.out.println(this + " общая сумма чека " + checkSum);
+        System.out.println(this + " вышел из магазина");
 
     }
 }

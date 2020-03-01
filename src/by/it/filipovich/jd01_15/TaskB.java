@@ -1,8 +1,6 @@
 package by.it.filipovich.jd01_15;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 /*
 Это многострочный коментарий  номер 1
@@ -21,14 +19,14 @@ public class TaskB {
     }
 
     private static void writeTheFile(String str,String theFinalFile) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(theFinalFile));
-        writer.write(str);
+        FileWriter print = new FileWriter(theFinalFile);
+        print.write(str);
     }
 
     /**
      *
-     * @param theFirstFile
-     * @return
+     * @param theFirstFile name of reading file
+     * @return text from the file
      */
     private static String readFileToStringBuilder(String theFirstFile) {
         String signStart1 = "//";
@@ -71,12 +69,9 @@ public class TaskB {
         return sb.toString();
     }
 
-
     /*
 Это многострочный коментарий  номер 2
 Продолжаю писать, что хочу.
  */
-
-
 }
 

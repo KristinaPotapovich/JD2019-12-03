@@ -17,7 +17,7 @@ class ConsoleRunner {
             logger.print(e.getMessage());
         }
         while (true) {
-            String expression = scanner.next();
+            String expression = scanner.nextLine();
             if (expression.equals("end")) {
                 try {
                     Var.saveVarToFile();

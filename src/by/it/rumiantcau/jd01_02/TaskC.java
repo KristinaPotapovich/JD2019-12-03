@@ -49,41 +49,6 @@ return mas;
 }
 
 
- //   static int step2(int[][] mas)
-//    {   int [] sumMas = new int [mas.length];
-//        int summa = 0;
-//        int countPosit = 0;
-//        for (int i = 0; i < mas.length-1; i++) {
-//            countPosit = 0;
-//            for (int i1 = 0; i1 < mas.length-1; i1++) {
-//                if (mas[i][i1] >= 0) countPosit = countPosit+1; //инкремент счетчика положительного числа
-//
-//                                     //начало суммирования после первого числа >=0
-//                if (countPosit == 1)|(countPosit < 2) {sumMas[i] += mas[i][i1];}
-//
-//
-//
-//
-//
-//                if (i1 == mas.length | countPosit < 2) { sumMas[i] = 0;}
-//
-//
-//                if (countPosit == 2) i1 = mas.length;
-//            }
-//
-//            for (int element : sumMas) {
-//                summa += element;
-//            }
-//
-//        }
-//        System.out.println("сумма для второго задания "+ summa);
-
-        //return summa;
-  //  }
-
-
-
-
 
 
 

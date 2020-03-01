@@ -1,10 +1,5 @@
 package by.it.kuzmichalex.jd01_08;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-
-import java.sql.SQLOutput;
-
 class Scalar extends Var {
     private double value;
 

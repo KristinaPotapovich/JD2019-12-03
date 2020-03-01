@@ -1,8 +1,6 @@
 package by.it.filipovich.jd01_15;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 class Helper {
 

@@ -1,5 +1,6 @@
 package by.it.borodachev.Calc;
 
+import java.io.*;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,6 +52,27 @@ public abstract class Var implements Operation {
           for (Map.Entry<String, Var> stringVarEntry : field.entrySet()) {
                System.out.println(stringVarEntry.getKey()+"="+stringVarEntry.getValue());
           }
+     }
+     static void savevar() throws CalcException {
+          String fileName=Helper.getPath("vars.txt",Var.class);
+          try (PrintWriter writer = new PrintWriter(fileName)) {
+               for (Map.Entry<String, Var> stringVarEntry : field.entrySet()) {
+                    writer.println(stringVarEntry.getKey() + "=" + stringVarEntry.getValue());
+               }
+          } catch (IOException e) {throw new CalcException(e.getMessage());}
+     }
+     static void loadvar() throws CalcException {
+          String fileName = Helper.getPath("vars.txt", Var.class);
+          field.clear();
+          Parser parser = new Parser();
+          try (BufferedReader inLines = new BufferedReader(new FileReader(fileName))) {
+               String inputLine;
+               while ((inputLine = inLines.readLine()) != null) {
+                    parser.calc(inputLine);
+               }
+          }
+          catch (FileNotFoundException fnotexista ) {return;}
+          catch (IOException e) { throw new CalcException(e.getMessage());}
      }
      static void sortvar() {
           Set<String> strings = field.keySet();

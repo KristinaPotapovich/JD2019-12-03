@@ -20,7 +20,7 @@ class ConsoleRunner {
 
         while (true) {
 
-            String expression = scanner.next();
+            String expression = scanner.nextLine();
             if (expression.equals("end")) break;
             else if (expression.equals("printvar")) Var.printvar();
             else if (expression.equals("sortvar")) Var.sortvar();

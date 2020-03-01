@@ -41,4 +41,8 @@ class Backet {
         personalGoods.merge(lastChosenItem.getKey(), lastChosenItem.getValue(), Double::sum);
         return lastChosenItem;
     }
+
+    Map<String, Double> getPersonalGoods() {
+        return personalGoods;
+    }
 }

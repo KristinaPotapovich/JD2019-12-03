@@ -7,24 +7,23 @@ public class TaskB1 {
 
     public static void main(String[] args) {
 
-        String[] words = new String[]{};
-        Scanner scanner = new Scanner(System.in);
-        StringBuilder sb = new StringBuilder();
-        while (true){
-            String str = scanner.nextLine();
-            if(str.equals("end"))
-                break;
-            sb.append(" ").append(str);
+        String[] words;
+        StringBuilder sb;
+        try (Scanner scanner = new Scanner(System.in)) {
+            sb = new StringBuilder();
+            while (true) {
+                String str = scanner.nextLine();
+                if (str.equals("end"))
+                    break;
+                sb.append(" ").append(str);
+            }
         }
         words = sb.toString().trim().replaceAll("[^a-zA-Z']+", " ")
                 .replaceAll(" {2,}", " ")
                 .split(" ");
 
         for (String word : words) {
-            if(map.get(word) == null)
-            map.put(word,1);
-            else
-                map.put(word,map.get(word)+1);
+            map.merge(word, 1, Integer::sum);
 
 //            for (Map.Entry<String, Integer> entry : map.entrySet()) {
 //                Iterator<Map.Entry<String, Integer>> iter = map.entrySet().iterator();

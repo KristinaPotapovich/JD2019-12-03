@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class TaskB {
     public static void main(String[] args) throws IOException {
-        StringBuilder sb = new StringBuilder("");
+        StringBuilder sb = new StringBuilder();
         String fileNameOne = Helper.pathToFile("text.txt", TaskB.class);
         String fileNameTwo = Helper.pathToFile("resultTaskB.txt", TaskB.class);
 
@@ -22,7 +22,7 @@ public class TaskB {
         int symbols = getSymbols(sb.toString());
         int words = getWords(sb.toString());
         System.out.println("words="+words+", punctuation marks="+symbols);
-        try (PrintWriter writer = new PrintWriter(fileNameTwo);){
+        try (PrintWriter writer = new PrintWriter(fileNameTwo)){
             writer.print("words="+words+", punctuation marks="+symbols);
         }catch (FileNotFoundException e){
             e.printStackTrace();
@@ -42,7 +42,7 @@ public class TaskB {
 
     private static int getSymbols(String s) {
         int countSymbol = 0;
-        s=s.replaceAll("\n"," ").replaceAll(" {1,}","");
+        s=s.replaceAll("\n"," ").replaceAll(" +","");
         Pattern pattern = Pattern.compile("[^а-яА-ЯёЁ]+");
         Matcher matcher = pattern.matcher(s);
         while (matcher.find()){

@@ -5,7 +5,7 @@ import java.util.*;
 
 class Buyer extends Thread implements IBuyer, IUseBasket{
 
-    public Buyer(int number){
+    Buyer(int number){
         super("Buyer № "+number);
         Dispatcher.count++;
     }
@@ -22,7 +22,6 @@ class Buyer extends Thread implements IBuyer, IUseBasket{
     @Override
     public void enterToMarket() {
         System.out.println(this + " entered to the Market");
-        Dispatcher.count++;
     }
 
     @Override

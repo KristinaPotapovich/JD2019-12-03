@@ -3,7 +3,7 @@ package by.it.busel.jd02_02;
 import java.util.Map;
 
 class Buyer extends Thread implements IBuyer, IUseBacket {
-    private boolean isPensioner;
+    boolean isPensioner;
 
     private double cognitiveDelay;
 
@@ -86,5 +86,19 @@ class Buyer extends Thread implements IBuyer, IUseBacket {
     public void goOut() {
         System.out.println(this + " has made for the shop-exit and has gone out.");
         Dispatcher.buyerLeft();
+    }
+
+    Map<String, Double> payOff() {
+        return personalBacket.getPersonalGoods();
+//        StringBuilder sb = new StringBuilder("\n");
+//        sb.append("Goods of ").append(this).append('\n');
+//        sb.append(String.format("%2s %-11s %5s%n", "№№", "item", "price"));
+//        for (Map.Entry<String, Double> item : personalGoods.entrySet()) {
+//            sb.append(String.format("%2d ", ++index)).append(String.format("%-12s", item.getKey()))
+//                    .append(String.format("%-5.2f BYN", item.getValue())).append('\n');
+//            total = total + item.getValue();
+//        }
+//        sb.append(String.format("%14s %-5.2f %s%n", "Total:", total, "BYN"));
+//        System.out.println(sb.toString());
     }
 }

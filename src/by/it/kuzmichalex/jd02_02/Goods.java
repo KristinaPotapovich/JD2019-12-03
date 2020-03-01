@@ -7,7 +7,7 @@ import java.util.List;
 public class Goods {
     static private HashMap<String, Double> mapOfGoods = new HashMap<>();
     static private List<String> listOfGoods = new ArrayList<>();
-    public Goods() {
+    static {
         mapOfGoods.put("Bread",1.25);
         mapOfGoods.put("Butter",2.23);
         mapOfGoods.put("Sugar",5.55);

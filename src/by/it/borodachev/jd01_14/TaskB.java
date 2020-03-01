@@ -19,7 +19,11 @@ public class TaskB {
                String strSome = scanner.next();
                 marks++;
                 String[] wordArr = strSome.replace("\r\n", " ").trim().split(" ");
-                words += wordArr.length;
+               // words += wordArr.length; не учитывает несколько пробелов подрядю Переделаем на более медленный вариант
+                for (String s : wordArr) {
+                   if (s.length() >0) {words++;}
+               }
+
             }
         }
         printConsoleAndFile(Helper.getPath(

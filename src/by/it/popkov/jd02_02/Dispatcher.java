@@ -2,6 +2,7 @@ package by.it.popkov.jd02_02;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 class Dispatcher {
 
@@ -14,6 +15,23 @@ class Dispatcher {
     private int dayBuyerNum = 0;
 
     private final Map<String, Integer> goodsMap = new HashMap<>();
+
+    private int dayProfit = 0;
+    private final Object dayProfitMonitor = new Object();
+
+    public int getDayProfit() {
+        synchronized (dayProfitMonitor) {
+            return dayProfit;
+        }
+    }
+
+    public void plusDayProfit(int plus) {
+        synchronized (dayProfitMonitor) {
+            dayProfit += plus;
+        }
+
+    }
+
 
     public void writeGoodsMap() {
         goodsMap.put("water", 1);
@@ -54,20 +72,20 @@ class Dispatcher {
     }
 
     public void cashierClosed() {
-        synchronized (onlineCashierMonitor){
+        synchronized (onlineCashierMonitor) {
             onlineCashier--;
         }
     }
 
     public void cashierOpened() {
-        synchronized (onlineCashierMonitor){
+        synchronized (onlineCashierMonitor) {
             onlineCashier++;
         }
     }
 
     public int getOnlineCashier() {
-        synchronized (onlineCashierMonitor){
-            return  onlineCashier;
+        synchronized (onlineCashierMonitor) {
+            return onlineCashier;
         }
     }
 }

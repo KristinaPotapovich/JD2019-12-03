@@ -75,9 +75,9 @@ public class CashierManager {
                 e.printStackTrace();
             }
         }
+        Logger.printAndFlush();
         listThreads.clear();
         listCashiers.clear();
-        Logger.addToLog(" ", 0);
 
       /*  Iterator<Map.Entry<Cashier, Thread>> iterator = mapCashiers.entrySet().iterator();
         while (iterator.hasNext()) {

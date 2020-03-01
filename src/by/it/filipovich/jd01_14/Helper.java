@@ -18,7 +18,7 @@ class Helper {
         try (DataOutputStream dos = new DataOutputStream(
                 new BufferedOutputStream(
                         new FileOutputStream(fileName)))
-             ;){
+        ){
             for (int i = 0; i < 20; i++) {
                 int number = (int) (Math.random() * 100);
                 dos.writeInt(number);
@@ -36,7 +36,7 @@ class Helper {
         double sum = 0;
 
         try (DataInputStream dis = new DataInputStream(new BufferedInputStream(new FileInputStream(fileNameOne)));
-             PrintWriter writer = new PrintWriter(fileNameTwo);){
+             PrintWriter writer = new PrintWriter(fileNameTwo)){
 
             while (dis.available() > 0){
                 int i = dis.readInt();

@@ -14,8 +14,6 @@ public class TaskC {
         OutputArray.printArray(newArr,"A", 5);
         System.out.println("Среднее геометрическое элементов массива = "+ AverageCalculation.geometricMean(newArr));
 
-        //functionSeven();
-
     }
 
     private static void functionSeven() {
@@ -57,9 +55,9 @@ public class TaskC {
         int number = numberOfElements(array);
         double[] newArray = new double[number];
         int j = 0;
-        for (int i = 0; i < array.length; i++) {
-            if(array[i] > 3.5) {
-                newArray[j] = array[i];
+        for (double v : array) {
+            if (v > 3.5) {
+                newArray[j] = v;
                 j++;
             }
         }

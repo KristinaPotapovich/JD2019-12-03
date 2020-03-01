@@ -35,7 +35,7 @@ public class TaskC {
                 for (int j = 0; j < n; j++) {
                     System.out.print(arr[i][j] + " ");
                 }
-                System.out.println("");
+                System.out.println();
             }
             return arr;
         } else
@@ -57,7 +57,7 @@ public class TaskC {
         int sum = 0;
         int count = 0;
         int j1 = 0;
-        int j2 = 0;
+        int j2;
         for (int[] ints : array) {
             for (int j = 0; j < ints.length; j++) {
                 if (ints[j] > 0) {

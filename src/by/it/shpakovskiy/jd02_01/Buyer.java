@@ -19,13 +19,6 @@ class Buyer extends Thread implements IBuyer, IUseBasket {
     }
 
     @Override
-    public void chooseGoods() {
-        System.out.println(this + " started choosing by goods");
-        sleepBuyer(500, 2000);
-        System.out.println(this + " finished choosing by goods");
-    }
-
-    @Override
     public void takeBasket() {
         System.out.println(this + " waits basket");
         while (true) {
@@ -37,6 +30,13 @@ class Buyer extends Thread implements IBuyer, IUseBasket {
         }
         System.out.println(this + " take basket");
         sleepBuyer(500, 2000);
+    }
+
+    @Override
+    public void chooseGoods() {
+        System.out.println(this + " started choosing by goods");
+        sleepBuyer(500, 2000);
+        System.out.println(this + " finished choosing by goods");
     }
 
     @Override

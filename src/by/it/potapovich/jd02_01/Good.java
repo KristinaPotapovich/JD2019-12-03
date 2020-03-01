@@ -41,7 +41,7 @@ public class Good {
 
     @Override
     public String toString() {
-        return "Товар " + nameGood + '\'' +
-                '}';
+        return "Товар " + nameGood + '\''
+                ;
     }
 }

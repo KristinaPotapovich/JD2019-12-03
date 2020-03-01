@@ -3,16 +3,10 @@ package by.it.filipovich.jd02_01;
 import java.util.Random;
 
 class Helper {
-    static final Random generator = new Random(System.nanoTime());
+    private static final Random generator = new Random(System.nanoTime());
 
     static int random(int start, int finish){
-        int rand = start+generator.nextInt(finish-start+1);
-        return rand;
-    }
-
-    static int random(int finish){
-        int rand = generator.nextInt(finish+1);
-        return rand;
+        return start+generator.nextInt(finish-start+1);
     }
 
     static void sleep(int timeout){

@@ -1,7 +1,5 @@
 package by.it.kuzmichalex.jd01_06;
 
-import com.sun.org.apache.xml.internal.utils.StringBufferPool;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 /**

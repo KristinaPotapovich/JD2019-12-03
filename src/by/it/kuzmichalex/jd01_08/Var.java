@@ -1,7 +1,5 @@
 package by.it.kuzmichalex.jd01_08;
 
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
-
 /**
  * Base class for task 7
  * */

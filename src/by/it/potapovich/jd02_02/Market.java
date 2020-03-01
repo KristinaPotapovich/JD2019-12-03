@@ -18,45 +18,51 @@ public class Market {
         Good cheese = new Good("Сыр");
         Good chicken = new Good("Мясо");
 
-        Map<Good,Integer> goods = new LinkedHashMap<>();
-        goods.put(toiletPaper,5);
-        goods.put(cucumber,2);
-        goods.put(bread,1);
-        goods.put(fruits,15);
-        goods.put(salt,1);
-        goods.put(sugar,2);
-        goods.put(potato,3);
-        goods.put(tomato,2);
-        goods.put(cheese,4);
-        goods.put(chicken,25);
+        Map<Good, Integer> goods = new LinkedHashMap<>();
+        goods.put(toiletPaper, 5);
+        goods.put(cucumber, 2);
+        goods.put(bread, 1);
+        goods.put(fruits, 15);
+        goods.put(salt, 1);
+        goods.put(sugar, 2);
+        goods.put(potato, 3);
+        goods.put(tomato, 2);
+        goods.put(cheese, 4);
+        goods.put(chicken, 25);
         Backet backet = new Backet();
-
 
 
         System.out.println("---------- Market opened");
         List<Thread> threads = new ArrayList<>(1000);
 
-        for (int i = 1; i <= 2; i++) {
-            Cashier cashier = new Cashier(i);
-            Thread thread = new Thread(cashier);
-            threads.add(thread);
-            thread.start();
-        }
-        Queue <Buyer> queue = new ArrayDeque<>();
-        while (countBuyers <= 120){
-            Thread.sleep(1000);
-            int count = Helper.random(0,2);
-            for (int i =0; i <= count; i ++){
-                countBuyers++;
-                if (countBuyers < 120){
-                    Buyer buyer = new Buyer(countBuyers,  goods, backet);
-                    queue.add(buyer);
+        int numberOfCashiers = 0;
+        Cashier cashier = new Cashier(++numberOfCashiers);
+        Thread thread = new Thread(cashier);
+        threads.add(thread);
+        thread.start();
 
-                }
-            }for (Buyer buyer: queue) {
-                buyer.join();
+        while (countBuyers <= 100) {
+            Thread.sleep(6000);
+            int count = Helper.random(0, 2);
+            for (int i = 0; i <= count; i++) {
+                countBuyers++;
+                new Buyer(countBuyers, goods, backet);
             }
-        }System.out.println("--------- Market closed");
+            Thread newCashier = null;
+            if (countBuyers > 1 && countBuyers % 5 == 1 && numberOfCashiers < 5) {
+                newCashier = new Thread(new Cashier(++numberOfCashiers));
+                threads.add(newCashier);
+                newCashier.start();
+            }
+            if (countBuyers != 1 && ((numberOfCashiers * 5) - countBuyers == 1)) {
+                Thread removedCashier = threads.remove(threads.size() - 1);
+                --numberOfCashiers;
+                if (!removedCashier.isInterrupted()) {
+                    removedCashier.interrupt();
+                }
+            }
+        }
+        System.out.println("--------- Market closed");
     }
 
 }

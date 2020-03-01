@@ -19,7 +19,7 @@ class Logger {
         }
     }
 
-    private static void printAndFlush() {
+     static void printAndFlush() {
     //    System.out.println("-------------------------------------------------------------------------------");
         //Заполним 6 колонку данными по очереди
         arrLogs[5]=String.format("In Queue:  %3d\nIn Market: %3d",BuyerQueue.getQueueSize(),Dispatcher.getCountBuyersInside());
