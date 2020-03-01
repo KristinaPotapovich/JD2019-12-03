@@ -1,7 +1,6 @@
 package by.it.filipovich.jd01_12;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -22,13 +21,7 @@ public class TaskA1 {
     }
 
     public void clearBad(List<Integer> grades){
-        Iterator<Integer> iterator = grades.iterator();
-        while (iterator.hasNext()){
-            int grade = iterator.next();
-            if(grade<4){
-                iterator.remove();
-            }
-        }
+        grades.removeIf(grade -> grade < 4);
     }
 
 }

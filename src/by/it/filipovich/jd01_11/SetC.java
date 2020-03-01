@@ -1,7 +1,5 @@
 package by.it.filipovich.jd01_11;
 
-
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Set;
@@ -54,9 +52,6 @@ import java.util.Set;
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        for (Object o : c) {
-
-        }
         return false;
     }
 
@@ -66,18 +61,18 @@ import java.util.Set;
             if(size == 0) {
                 return 0;
             }
-                for (int i = 0; i < elements.length; i++) {
-                    if(elements[i] != null){
-                        count++;
-                    }
-                }
+        for (T element : elements) {
+            if (element != null) {
+                count++;
+            }
+        }
             return count;
     }
 
     @Override
     public boolean isEmpty() {
         for (T element : elements) {
-            if(element == null || elements.length == 0)
+            if(element == null)
                 return true;
         }
         return false;

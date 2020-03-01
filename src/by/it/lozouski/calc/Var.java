@@ -64,7 +64,7 @@ abstract class Var implements Operation {
 
     @Override
     public Var div(Var other) throws CalcException {
-        throw new CalcException();
+        throw new CalcException("Operation division " + this + " / " + other + " isn't possible.");
     }
 
     Var div(Scalar otherScalar) throws CalcException {
@@ -82,17 +82,18 @@ abstract class Var implements Operation {
         else if (operand.matches(Patterns.VECTOR)) return new Vector(operand);
         else if (operand.matches(Patterns.MATRIX)) return new Matrix(operand);
         else if (operand.matches(Patterns.VARNAME)) {
-            if (varsMap.get(operand) == null) throw new CalcException("Undefined variable:" + '"' + operand + '"'+"."+
-                    "\nPlease, input the value of the format: Scalar, Vector, Matrix and try again.");
+            if (varsMap.get(operand) == null)
+                throw new CalcException("Undefined variable:" + '"' + operand + '"' + "." +
+                        "\nPlease, input the value of the format: Scalar, Vector, Matrix and try again.");
             return varsMap.get(operand);
         } else throw new CalcException("Incorrect input. Please try again.");
     }
 
     static void saveVar(String key, Var value) throws CalcException {
         if (!key.matches(Patterns.VARNAME)) {
-            throw new CalcException("Wrong variable name."+'\n'
-                                    +"Please, input the variable name in the format:"+'\n'
-                                    +"Latin Letter and numbers = your value(Scalar, Vector, Matrix)");
+            throw new CalcException("Wrong variable name." + '\n'
+                    + "Please, input the variable name in the format:" + '\n'
+                    + "Latin Letter and numbers = your value(Scalar, Vector, Matrix)");
         }
         varsMap.put(key, value);
         VarFile.save(varsMap);

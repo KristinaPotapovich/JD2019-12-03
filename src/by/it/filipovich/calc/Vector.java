@@ -14,7 +14,8 @@ public class Vector extends Var {
     }
 
     public Vector(String strVector){
-            String[] a = strVector.replaceAll("}","")
+            String[] a = strVector.replaceAll(" +", "")
+                                    .replaceAll("}","")
                                     .replaceAll("\\{","")
                                     .replaceAll(","," ")
                                     .split(" ");
@@ -43,13 +44,15 @@ public class Vector extends Var {
     }
 
     @Override
-    public Var add(Var other) {
+    public Var add(Var other) throws CalcException {
         if(other instanceof Vector) {
+            if (this.value.length == ((Vector) other).value.length) {
             double[] sum = new double[this.value.length];
             for (int i = 0; i < sum.length; i++) {
-                sum[i] = this.value[i]+((Vector) other).value[i];
+                sum[i] = this.value[i] + ((Vector) other).value[i];
             }
-            return new Vector(sum);
+                return new Vector(sum);
+            }
         }
         if(other instanceof Scalar) {
             double[] sum = new double[this.value.length];
@@ -62,13 +65,15 @@ public class Vector extends Var {
     }
 
     @Override
-    public Var sub(Var other) {
+    public Var sub(Var other) throws CalcException {
         if(other instanceof Vector) {
-            double[] diff = new double[this.value.length];
-            for (int i = 0; i < diff.length; i++) {
-                diff[i] = this.value[i]-((Vector) other).value[i];
+            if (this.value.length == ((Vector) other).value.length) {
+                double[] diff = new double[this.value.length];
+                for (int i = 0; i < diff.length; i++) {
+                    diff[i] = this.value[i] - ((Vector) other).value[i];
+                }
+                return new Vector(diff);
             }
-            return new Vector(diff);
         }
         if(other instanceof Scalar) {
             double[] diff = new double[this.value.length];
@@ -81,7 +86,7 @@ public class Vector extends Var {
     }
 
     @Override
-    public Var mul(Var other) {
+    public Var mul(Var other) throws CalcException {
         if(other instanceof Vector) {
             if (this.value.length == ((Vector) other).value.length) {
                 double diff = 0;
@@ -102,7 +107,7 @@ public class Vector extends Var {
     }
 
     @Override
-    public Var div(Var other) {
+    public Var div(Var other) throws CalcException {
         if(other instanceof Vector) {
             return super.div(other);
         }

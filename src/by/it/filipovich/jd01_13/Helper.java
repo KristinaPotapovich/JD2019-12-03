@@ -13,11 +13,11 @@ public class Helper {
 
         for (StackTraceElement element : stackTrace) {
             String classOfException = element.getClassName();
-            if (nameOfClass.equals(classOfException)){
+            if (nameOfClass != null && nameOfClass.equals(classOfException)) {
                 int lineNumber = element.getLineNumber();
                 System.out.printf(" name: %s \n" +
                                 "class: %s \n" +
-                                " line: %d",nameOfException,
+                                " line: %d", nameOfException,
                         nameOfClass, lineNumber);
             }
         }

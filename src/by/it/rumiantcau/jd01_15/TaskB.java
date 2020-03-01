@@ -47,7 +47,7 @@ public class TaskB {
 
     private static void deleteStarSlashComment(StringBuilder str) {
         int start;
-        boolean starComment, a = false;
+        boolean starComment;
         //удаление джавадока и многострочных комментариев
         for (int i = 0; i < str.length(); i++) {
             if (str.charAt(i) == '/') {

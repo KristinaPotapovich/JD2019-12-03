@@ -21,7 +21,4 @@ class Patterns {
      * A pattern (String-object) containing a general definition of a Matrix expression
      */
     static final String MATRIX = "\\{" + VECTOR + "(, *" + VECTOR + ")*\\}";
-
-    static final String VARIABLE_NAME = "[А-ЯЁаяё]?";
-
 }

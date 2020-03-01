@@ -94,7 +94,7 @@ public class TaskB {
             for(int j=i+1;j<=i+5;j++){
                System.out.print(j+" ");
                 }
-            System.out.println("");
+            System.out.println();
             }
     }
 

@@ -43,20 +43,20 @@ public class TaskC {
 
     public static int step2(int[][] mas) {
         int sum = 0;
-        for (int i = 0; i < mas.length; i++) {
+        for (int[] ma : mas) {
             int a = -1, b = -1;
-            for (int j = 0; j < mas[i].length; j++) {
-                if (mas[i][j] > 0) {
-                    if (a == -1 && b == -1) {
+            for (int j = 0; j < ma.length; j++) {
+                if (ma[j] > 0) {
+                    if (a == -1) {
                         a = j;
-                    } else if (a != -1 && b == -1) {
+                    } else if (b == -1) {
                         b = j;
                     }
                 }
             }
             if (a != -1 && b != -1 && a + 1 != b) {
                 for (int j = a + 1; j < b; j++) {
-                    sum += mas[i][j];
+                    sum += ma[j];
                 }
             }
         }
@@ -66,10 +66,10 @@ public class TaskC {
 
     public static int[][] step3(int[][] mas) {
         int max = mas[0][0];
-        for (int i = 0; i < mas.length; i++) {
-            for (int j = 1; j < mas[i].length; j++) {
-                if (max < mas[i][j]) {
-                    max = mas[i][j];
+        for (int[] ma : mas) {
+            for (int j = 1; j < ma.length; j++) {
+                if (max < ma[j]) {
+                    max = ma[j];
                 }
             }
         }

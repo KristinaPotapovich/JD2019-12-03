@@ -12,101 +12,99 @@ class Vector extends Var {
         this(vector.value);
     }
     Vector(String str) {
-        str.trim();
-       //  по другому не смогла удолить фигурные скобки
-        String[] string = str.split("[{ ,}]+");
-
-        if (string[0].equals(""))
-            for (int i = 0; i < string.length-1; i++) {
-                string[i]=string[i+1];
-            }
-        string = Arrays.copyOf(string,string.length-1);
-
-        double[] array = new double[string.length];
+        String[] strings = str.replaceAll(" ", "")
+                .replaceAll("[{]", "")
+                .replaceAll("[}]", "")
+                .split("[,]");
+        double[] array = new double[strings.length];
         for (int i = 0; i < array.length; i++) {
-                array[i] = Double.parseDouble(string[i]);
+                array[i] = Double.parseDouble(strings[i]);
         }
         this.value = array;
     }
 
+    //////////   methods for add operation
     @Override
-    public Var add(Var other) throws CalcException{
-        if (other instanceof Scalar) {
-            Scalar scalar = (Scalar) other;
-            double[] sum = Arrays.copyOf(value,value.length);
-            for (int i = 0; i < sum.length; i++) {
-                sum[i] += scalar.getValue();
-            }
-            return new Vector(sum);
-        }
-        if (other instanceof Vector) {
-            double[] vector1 = Arrays.copyOf(value,value.length);
-            Vector vector2 = (Vector) other;
-            for (int i = 0; i < vector1.length; i++) {
-                vector1[i] += vector2.value[i];
-            }
-            return new Vector(vector1);
-        }
-        else return other.add(this);
+    public Var add(Var rigth) throws CalcException{
+         return rigth.add(this);
     }
 
     @Override
-    public Var sub(Var other) throws CalcException{
-        if (other instanceof Scalar) {
-            Scalar scalar = (Scalar) other;
-            double[] sub = Arrays.copyOf(value,value.length);
-            for (int i = 0; i < sub.length; i++) {
-                sub[i] -= scalar.getValue();
-            }
-            return new Vector(sub);
+    public Var add(Scalar left) throws CalcException {
+        double[] sum = Arrays.copyOf(value,value.length);
+        for (int i = 0; i < sum.length; i++) {
+            sum[i] += left.getValue();
         }
-        if (other instanceof Vector) {
-            double[] vector1 = Arrays.copyOf(value,value.length);
-            Vector vector2 = (Vector) other;
-            for (int i = 0; i < vector1.length; i++) {
-                vector1[i] -= vector2.value[i];
-            }
-            return new Vector(vector1);
-        }
-        else return other.sub(this);
-    }
+        return new Vector(sum);
 
-
-    @Override
-    public Var mul(Var other) throws CalcException{
-        if (other instanceof Scalar) {
-            Scalar scalar = (Scalar) other;
-            double[] mul = Arrays.copyOf(value,value.length);
-            for (int i = 0; i < mul.length; i++) {
-                mul[i] *= scalar.getValue();
-            }
-            return new Vector(mul);
-        }
-        if (other instanceof Vector) {
-            double[] vector1 = Arrays.copyOf(value,value.length);
-            Vector vector2 = (Vector) other;
-            double mul1 = 0;
-            for (int i = 0; i < vector1.length; i++) {
-                vector1[i] *= vector2.value[i];
-                mul1 += vector1[i];
-            }
-            return new Scalar(mul1);
-        }
-        else return other.mul(this);
     }
 
     @Override
-    public Var div(Var other) throws CalcException{
-        if (other instanceof Scalar) {
-            Scalar scalar = (Scalar) other;
-            double[] div = Arrays.copyOf(value,value.length);
-            for (int i = 0; i < div.length; i++) {
-                div[i] /= scalar.getValue();
-            }
-            return new Vector(div);
+    public Var add(Vector left) throws CalcException {
+        if (this.value.length!= left.value.length)
+            throw new CalcException("Операция сложения не возможна: длина векторов разная!");
+        double[] vector = Arrays.copyOf(this.value,this.value.length);
+        for (int i = 0; i < vector.length; i++) {
+            vector[i] += left.value[i];
         }
-        return super.div(other);
+        return new Vector(vector);
     }
+
+    //////////   methods for sub operation
+    @Override
+    public Var sub(Var rigth) throws CalcException{
+        return rigth.sub(this);
+    }
+
+    @Override
+    public Var sub(Scalar left) throws CalcException {
+        double[] sub = new double[this.value.length];
+        for (int i = 0; i < sub.length; i++) {
+            sub[i] = this.value[i]-left.getValue();
+        }
+        return new Vector(sub);
+    }
+    @Override
+    public Var sub(Vector left) throws CalcException {
+        if (this.value.length!= left.value.length)
+            throw new CalcException("Операция вычеания не возможна: длина векторов разная!");
+        double[] vector = new double[this.value.length];
+        for (int i = 0; i < vector.length; i++) {
+            vector[i] = this.value[i] - left.value[i];
+        }
+        return new Vector(vector);
+
+    }
+    //////////   methods for mul operation
+    @Override
+    public Var mul(Var rigth) throws CalcException{
+        return rigth.mul(this);
+    }
+    @Override
+    public Var mul(Scalar left) throws CalcException {
+        double[] mul = new double[this.value.length];
+        for (int i = 0; i < mul.length; i++) {
+            mul[i] = this.value[i] * left.getValue();
+        }
+        return new Vector(mul);
+    }
+    @Override
+    public Var mul(Vector left) throws CalcException {
+        double[] vector = new double[this.value.length];
+        double mul = 0;
+        for (int i = 0; i < vector.length; i++) {
+            vector[i] = this.value[i] * left.value[i];
+            mul += vector[i];
+        }
+        return new Scalar(mul);
+    }
+
+    //////////   methods for div operation
+    @Override
+    public Var div(Var rigth) throws CalcException{
+        return rigth.div(this);
+    }
+
 
     public double[] getValue() {
         return value;

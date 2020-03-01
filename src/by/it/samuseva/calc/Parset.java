@@ -11,11 +11,12 @@ class Parset {
         if (mat.find()){
             String operation = mat.group();
             String[] operands = expression.split(Patterns.OPERATION, 2);
-            Var operandOne = Var.createVar(operands[0]);
             Var operandTwo = Var.createVar(operands[1]);
             if (expression.contains("=")){
-                return  Var.saveVar(operands[0], operandTwo);
+                Var.saveVar(operands[0], operandTwo);
+                return  operandTwo;
             }
+            Var operandOne = Var.createVar(operands[0]);
             if ((operandOne != null ) || (operandTwo != null)){
                 switch (operation){
                     case "+": return operandOne.add(operandTwo);
@@ -24,6 +25,7 @@ class Parset {
                     case "/": return operandOne.div(operandTwo);
                 }
             }
+
         }
         return null;
     }

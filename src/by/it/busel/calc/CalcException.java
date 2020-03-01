@@ -1,18 +1,19 @@
 package by.it.busel.calc;
 
-public class CalcException extends Exception {
-    public CalcException() {
+@SuppressWarnings("all")
+class CalcException extends Exception {
+    CalcException() {
     }
 
-    public CalcException(String message) {
+    CalcException(String message) {
         super("ERROR: " + message);
     }
 
-    public CalcException(String message, Throwable cause) {
+    CalcException(String message, Throwable cause) {
         super("ERROR: " + message, cause);
     }
 
-    public CalcException(Throwable cause) {
+    CalcException(Throwable cause) {
         super(cause);
     }
 }

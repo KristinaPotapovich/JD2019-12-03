@@ -1,6 +1,6 @@
 package by.it.shpakovskiy.jd01_03;
 
-public class Runner {
+class Runner {
     public static void main(String[] args) {
         double[] array = InOut.getArray("-1 2 3 4 567 567 4 3 2 -1 4 4");
         InOut.printArray(array);

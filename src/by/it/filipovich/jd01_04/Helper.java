@@ -1,7 +1,5 @@
 package by.it.filipovich.jd01_04;
 
-import java.util.Arrays;
-
 public class Helper {
 
     static double[] sort(double[] arr) {
@@ -17,7 +15,6 @@ public class Helper {
             }
             iter--;
         }
-        //InOut.printArray(sortArray,"V", 4);
         return arr;
     }
 }

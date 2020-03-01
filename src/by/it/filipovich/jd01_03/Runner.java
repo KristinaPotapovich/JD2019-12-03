@@ -1,6 +1,5 @@
 package by.it.filipovich.jd01_03;
 
-import java.util.Arrays;
 
 public class Runner {
     public static void main(String[] args) {

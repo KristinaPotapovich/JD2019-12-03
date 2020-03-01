@@ -1,22 +1,14 @@
 package by.it.shpakovskiy.jd01_03;
 
-public class Helper {
+import java.util.Arrays;
+
+class Helper {
     static double findMin(double[] arr) {
-        double min = arr[0];
-        for (int i = 1; i < arr.length; i++) {
-            if (min > arr[i])
-                min = arr[i];
-        }
-        return min;
+        return Arrays.stream(arr).min().getAsDouble();
     }
 
     static double findMax(double[] arr) {
-        double max = arr[0];
-        for (int i = 1; i < arr.length; i++) {
-            if (max < arr[i])
-                max = arr[i];
-        }
-        return max;
+        return Arrays.stream(arr).max().getAsDouble();
     }
 
     static void sort(double[] arr) {

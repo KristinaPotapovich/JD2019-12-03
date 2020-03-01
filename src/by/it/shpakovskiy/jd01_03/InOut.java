@@ -1,6 +1,6 @@
 package by.it.shpakovskiy.jd01_03;
 
-public class InOut {
+class InOut {
     /**
      *Line conversion to numbers in array of double
      * @param line The string from which to get an array

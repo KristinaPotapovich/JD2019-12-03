@@ -1,9 +1,5 @@
 package by.it.kuzmichalex.jd01_07;
 
-import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 class Matrix extends Var{
     double value[][];
     /**

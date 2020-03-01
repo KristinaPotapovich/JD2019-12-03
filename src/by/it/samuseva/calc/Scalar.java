@@ -16,25 +16,17 @@ class Scalar extends Var {
 //////////   methods for add operation
     @Override
     public Var add(Var right) throws CalcException{
-       /* if (other instanceof Scalar){
-           double sum = this.value + ((Scalar) other).value;
-           return new Scalar(sum);
-        }
-        else*/ return right.add(this);
+       return right.add(this);
     }
-
     @Override
     public Var add(Scalar left) {
         double sum = this.value + ((Scalar) left).value;
         return new Scalar(sum);
-
     }
-
     @Override
     public Var add(Vector left) throws CalcException{
         return left.add(this);
     }
-
     @Override
     public Var add(Matrix left) throws CalcException{
         return left.add(this);
@@ -42,33 +34,61 @@ class Scalar extends Var {
 
 //////////   methods for sub operation
     @Override
-    public Var sub(Var other) throws CalcException{
-        if (other instanceof Scalar){
-            double sub = this.value - ((Scalar) other).value;
-            return new Scalar(sub);
-        }
-        else return other.sub(this);
+    public Var sub(Var rigth) throws CalcException{
+        return rigth.sub(this);
     }
-//////////   methods for mul operation
     @Override
-    public Var mul(Var other) throws CalcException{
-        if (other instanceof Scalar){
-            double mul = this.value * ((Scalar) other).value;
-            return new Scalar(mul);
-        }
-        else return other.mul(this);
+    public Var sub(Scalar left) throws CalcException {
+        return  new Scalar(-1*(this.value-left.value));
+    }
+    @Override
+    public Var sub(Vector left) throws CalcException {
+        return left.sub(this);
+    }
+    @Override
+    public Var sub(Matrix left) throws CalcException {
+        return left.sub(this);
     }
 
-
-//////////   methods for div operation
+    //////////   methods for mul operation
     @Override
-    public Var div(Var other) throws CalcException{
-        if (other instanceof Scalar){
-            if (((Scalar) other).value==0) throw new CalcException("Делить на ноль нельзя!");
-            double div = this.value / ((Scalar) other).value;
-            return new Scalar(div);
-        }
-        return super.div(other);
+    public Var mul(Var rigth) throws CalcException{
+         return rigth.mul(this);
+    }
+    @Override
+    public Var mul(Scalar left) throws CalcException {
+        return new Scalar(this.value *left.value);
+    }
+    @Override
+    public Var mul(Vector left) throws CalcException {
+        return left.mul(this);
+    }
+    @Override
+    public Var mul(Matrix left) throws CalcException {
+        return left.mul(this);
+    }
+
+    //////////   methods for div operation
+    @Override
+    public Var div(Var rigth) throws CalcException{
+        return rigth.div(this);
+    }
+    @Override
+    public Var div(Scalar left) throws CalcException {
+        if (this.value==0) throw new CalcException("Делить на ноль нельзя!");
+        return new Scalar(left.value/this.value);
+    }
+
+    @Override
+    public Var div(Vector left) throws CalcException {
+        if (this.value==0) throw new CalcException("Делить на ноль нельзя!");
+        return left.mul(new Scalar(1.0/this.value));
+    }
+
+    @Override
+    public Var div(Matrix left) throws CalcException {
+        if (this.value==0) throw new CalcException("Делить на ноль нельзя!");
+        return left.mul(new Scalar(1.0/this.value));
     }
 
     public double getValue() {

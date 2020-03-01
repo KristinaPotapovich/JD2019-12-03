@@ -14,13 +14,13 @@ public class Helper {
 
     protected static String getPathPackage(Class<?> yourClass) {
         String dir = System.getProperty("user.dir");
-        String packageClassName = dir + File.separator + "src" + yourClass.getPackage().getName().replace(".", File.separator) + File.separator;
+        String packageClassName = dir + File.separator + "src" + File.separator + yourClass.getPackage().getName().replace(".", File.separator) + File.separator;
         final File path = new File(packageClassName);
         return path.getParent();
     }
 
     protected static String getPackage(Class<?> yourClass) {
         String dir = System.getProperty("user.dir");
-        return dir + File.separator + "src" + File.separator + yourClass.getPackage().getName().replace(".",File.separator);
+        return dir + File.separator + "src" + File.separator + yourClass.getPackage().getName().replace(".", File.separator);
     }
 }

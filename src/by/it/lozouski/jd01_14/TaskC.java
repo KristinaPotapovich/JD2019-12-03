@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-class TaskC {
+class TaskC extends Helper{
 
     public static void main(String[] args) {
         String dirPackageLastName = Helper.getPathPackage(TaskC.class);

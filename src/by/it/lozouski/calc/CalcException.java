@@ -5,11 +5,11 @@ class CalcException extends Exception {
     }
 
     public CalcException(String message) {
-        super("ERROR: " + message);
+        super("Message error: " + message);
     }
 
     public CalcException(String message, Throwable cause) {
-        super("ERROR: " + message, cause);
+        super("Message error: " + message, cause);
     }
 
     public CalcException(Throwable cause) {
