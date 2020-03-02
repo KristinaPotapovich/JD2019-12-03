@@ -55,7 +55,7 @@ public class TaskA {
             }
         }
         System.out.print(min+" "+max);
-        System.out.println("");
+        System.out.println();
     }
 
 }

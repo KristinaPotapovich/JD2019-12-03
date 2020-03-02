@@ -8,7 +8,7 @@ import static by.it.ban.calc.Var.*;
 class Parser {
 
     Var calc(String expression) throws CalcException {
-        expression = expression.replace("\\s+", "");
+        expression = expression.replaceAll("\\s+", "");
         if (expression.equals("printvar")){
             printvar();
         }

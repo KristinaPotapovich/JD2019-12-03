@@ -3,15 +3,15 @@ package by.it.filipovich.jd01_13;
 import java.util.*;
 
 class TaskC {
-    static List<Double> list = new LinkedList<>();
-    static Scanner scannerOne;
+    private static List<Double> list = new LinkedList<>();
+    private static Scanner scannerOne;
 
     public static void main(String[] args) throws InterruptedException {
         scannerOne = new Scanner(System.in);
         readData();
     }
 
-    static void readData() throws InterruptedException {
+    private static void readData() throws InterruptedException {
         TaskC taskC = new TaskC();
         int count = 0;
         boolean a=true;
@@ -38,7 +38,7 @@ class TaskC {
 //
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder("");
+        StringBuilder sb = new StringBuilder();
         String del = "";
         for (Double aDouble : list) {
             sb.append(del).append((double) aDouble);

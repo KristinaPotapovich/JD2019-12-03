@@ -1,8 +1,5 @@
 package by.it.filipovich.jd01_04;
 
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.Arrays;
 
 public class TaskC {
@@ -15,8 +12,8 @@ public class TaskC {
         double[] array = InOut.getArray(line);
         double first = array[0];
         double last = array[array.length - 1];
-        int indexFirst = -1;
-        int indexLast = -1;
+        int indexFirst;
+        int indexLast;
         Arrays.sort(array);
         InOut.printArray(array, "V", 5);
 

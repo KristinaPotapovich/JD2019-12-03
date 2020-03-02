@@ -10,7 +10,7 @@ class Vector extends Var {
         System.arraycopy(value, 0, this.value, 0, value.length);
     }
 
-    public Vector(Vector vector) {
+    Vector(Vector vector) {
         this(vector.value);
     }
 

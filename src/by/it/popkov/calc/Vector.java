@@ -15,6 +15,7 @@ class Vector extends Var {
     }
 
     Vector(String strVector) {
+        strVector = strVector.replaceAll(" ", "");
         strVector = strVector.replaceAll("[{}]", "");
         strVector = strVector.replaceAll(",", " ");
         String[] doubNums = strVector.split(" ");

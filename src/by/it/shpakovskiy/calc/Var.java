@@ -1,5 +1,7 @@
 package by.it.shpakovskiy.calc;
 
+import java.io.*;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -118,6 +120,30 @@ abstract class Var implements Operation {
         Set<String> set = new TreeSet<>(vars.keySet());
         for (String s : set) {
             System.out.println(s + "=" + vars.get(s));
+        }
+    }
+
+    static void saveVarToFile() throws CalcException {
+        String fileName="vars.txt";
+        try (PrintWriter writer = new PrintWriter("src/by/it/shpakovskiy/calc/"+fileName)) {
+            vars.forEach((key,value)->writer.printf("%s=%s\n",key,value));
+        } catch (FileNotFoundException e) {
+            throw  new CalcException(e);
+        }
+    }
+
+    static void loadVarFromFile(Parser parser) throws CalcException {
+        String fileName="vars.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(Paths.get("src/by/it/shpakovskiy/calc/"+fileName).toFile()))) {
+            while (reader.ready()){
+                String line = reader.readLine();
+                if (line==null){
+                    throw new CalcException("Error reading file");
+                }
+                parser.calc(line);
+            }
+        } catch (IOException e) {
+            throw  new CalcException("error loading data "+e.getMessage());
         }
     }
 }

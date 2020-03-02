@@ -13,12 +13,12 @@ public class TaskA2 {
         addElementsToSetA(setA);
         addElementsToSetB(setB);
 
-        System.out.println(getUnion(setA,setB));;
+        System.out.println(getUnion(setA,setB));
         System.out.println(getCross(setA,setB));
 
     }
 
-    private static void addElementsToSetA(Collection collection){
+    private static void addElementsToSetA(Collection<Integer> collection){
         collection.add(44);
         collection.add(23);
         collection.add(4);
@@ -27,7 +27,7 @@ public class TaskA2 {
 
     }
 
-    private static void addElementsToSetB(Collection collection){
+    private static void addElementsToSetB(Collection<Integer> collection){
         collection.add(55);
         collection.add(23);
         collection.add(45);

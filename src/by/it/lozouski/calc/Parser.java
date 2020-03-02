@@ -7,7 +7,6 @@ class Parser {
     Var calculate(String expression) throws CalcException {
         expression = expression.replace("\\s+", "");
         Matcher matcher = Pattern.compile(Patterns.OPERATION).matcher(expression);
-
         if (matcher.find()) {
             String operation = matcher.group();
             String[] operands = expression.split(Patterns.OPERATION, 2);

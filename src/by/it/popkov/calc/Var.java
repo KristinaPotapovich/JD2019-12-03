@@ -93,24 +93,22 @@ abstract class Var implements Operation {
         else throw new CalcException("Неправильный ввод");
     }
 
-    static void save(String value, Var value1) {
+    static void save(String value, Var value1) throws CalcException {
         valueMap.put(value, value1);
+        CalcFile.writeValue(valueMap);
     }
 
     static void printvar() {
-        System.out.println(valueMap);
-//        String[] keys = valueMap.keySet().toArray(new String[0]);
-//        for (String key : keys) {
-//            System.out.println(key + "="+ valueMap.get(key));
-//        }
+        String values = valueMap.toString();
+        System.out.println(values);
+//        Log.writeLog(values);
+
     }
 
     static void sortvar() {
-        System.out.println(new TreeMap<>(valueMap));
-//        TreeSet<String> objects = new TreeSet<>(valueMap.keySet());
-//        String[] sortedKeys = objects.toArray(new String[0]);
-//        for (String sortedKey : sortedKeys) {
-//            System.out.println(sortedKey + "="+ valueMap.get(sortedKey));
-        //}
+        final String sortedValue = new TreeMap<>(valueMap).toString();
+        System.out.println(sortedValue);
+//        Log.writeLog(sortedValue);
+
     }
 }

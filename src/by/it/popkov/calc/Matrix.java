@@ -18,6 +18,7 @@ class Matrix extends Var {
     }
 
     Matrix(String strMatrix) {
+        strMatrix = strMatrix.replaceAll(" ", "");
         strMatrix = strMatrix.replaceAll("[{]+", "");
         strMatrix = strMatrix.replaceAll("[}]{2,}", "");
         strMatrix = strMatrix.replaceAll(",", " ");

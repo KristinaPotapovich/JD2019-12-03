@@ -25,7 +25,7 @@ public class TaskB2 {
 
     }
 
-    static String process(ArrayList<String> peoples){
+    private static String process(ArrayList<String> peoples){
         ArrayList<String> copyOfPeoples = new ArrayList<>(peoples);
         boolean marker = false;
         while(copyOfPeoples.size()>1){
@@ -33,7 +33,7 @@ public class TaskB2 {
             while (iterator.hasNext()){
             iterator.next();
 
-                if (marker==false) {
+                if (!marker) {
                     marker = true;
                 }
                 else {
@@ -45,7 +45,7 @@ public class TaskB2 {
         return copyOfPeoples.get(0);
     }
 
-    static String process(LinkedList<String> peoples){
+    private static String process(LinkedList<String> peoples){
             LinkedList<String> copyOfPeoples = new LinkedList<>(peoples);
             boolean marker = false;
         while(copyOfPeoples.size()>1){
@@ -53,7 +53,7 @@ public class TaskB2 {
             while (iterator.hasNext()){
                     iterator.next();
 
-                    if (marker==false) {
+                    if (!marker) {
                         marker = true;
                     }
                     else {

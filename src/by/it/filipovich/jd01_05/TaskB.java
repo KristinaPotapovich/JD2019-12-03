@@ -9,7 +9,7 @@ public class TaskB {
     }
 
     private static void functionFive() {
-        double beta = 0;
+        double beta;
         double delta = 0.5;
         double leftOfX = -6;
         double rightOfX = 2;

@@ -29,7 +29,7 @@ public class TaskB {
      * @param surName массив фамилий работников
      * @param salary массив зарплат работников за 4 квартала
      */
-    static void outSalary(String[] surName, int[][] salary){
+    private static void outSalary(String[] surName, int[][] salary){
         int[] sum = new int[surName.length];
 
         for (int i = 0; i < sum.length; i++) {
@@ -59,11 +59,11 @@ public class TaskB {
      */
     private static void middleOfSalarysAndSum(int[][] salary){
         int sumFinal = 0;
-        double middle = 0;
+        double middle;
         int numberOfSalarys = salary.length*salary[0].length;
-        for (int i = 0; i < salary.length; i++) {
+        for (int[] ints : salary) {
             for (int j = 0; j < salary[0].length; j++) {
-                sumFinal = sumFinal+salary[i][j];
+                sumFinal = sumFinal + ints[j];
             }
         }
         middle = (1.00*sumFinal)/numberOfSalarys;

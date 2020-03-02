@@ -109,8 +109,9 @@ public abstract class Var implements Operation {
             }
         }
     }
-    static void save(String key, Var value) {
+    static void save(String key, Var value) throws CalcException {
         vars.put(key,value);
+        VarFile.save(vars);
     }
 
     static void printvar() {

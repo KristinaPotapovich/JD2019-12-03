@@ -1,9 +1,6 @@
 package by.it.shpakovskiy.jd01_12;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.*;
 
 class TaskC1 {
     public static void main(String[] args) {
@@ -17,14 +14,8 @@ class TaskC1 {
             c1.put(System.nanoTime(), line);
         }
         System.out.println(c1);
-        Map<String, Long> buf = new HashMap<>();
-        for (Map.Entry<Long, String> entry : c1.entrySet()) {
-            buf.putIfAbsent(entry.getValue(), entry.getKey());
-        }
-        c1 = new TreeMap<>();
-        for (Map.Entry<String, Long> entry : buf.entrySet()) {
-            c1.put(entry.getValue(), entry.getKey());
-        }
+        Set<String> set=new HashSet<>(c1.size());
+        c1.values().removeIf(v->!set.add(v));
         System.out.println("________________________________");
         System.out.println(c1);
     }

@@ -18,19 +18,19 @@ public class TaskB3 {
             taskB3.names2.add("Human"+(i+1));
         }
         long before = System.nanoTime();
-        System.out.println(process((ArrayList<String>) taskB3.names1));
+        System.out.println(process(taskB3.names1));
         long after = System.nanoTime();
         System.out.println("Time for ArrayList = "+(after-before));
 
         long before1 = System.nanoTime();
-        System.out.println(process((LinkedList<String>) taskB3.names2));
+        System.out.println(process(taskB3.names2));
         long after1 = System.nanoTime();
         System.out.println("Time for LinkedList = "+(after1-before1));
 
 
     }
 
-    static String process(ArrayList<String> peoples){
+    private static String process(ArrayList<String> peoples){
         ArrayList<String> copyOfPeoples = new ArrayList<>(peoples);
         boolean marker = false;
         while(copyOfPeoples.size()>1){
@@ -38,7 +38,7 @@ public class TaskB3 {
             while (iterator.hasNext()){
                 iterator.next();
 
-                if (marker==false) {
+                if (!marker) {
                     marker = true;
                 }
                 else {
@@ -50,7 +50,7 @@ public class TaskB3 {
         return copyOfPeoples.get(0);
     }
 
-    static String process(LinkedList<String> peoples){
+    private static String process(LinkedList<String> peoples){
         LinkedList<String> copyOfPeoples = new LinkedList<>(peoples);
         boolean marker = false;
         while(copyOfPeoples.size()>1){
@@ -58,7 +58,7 @@ public class TaskB3 {
             while (iterator.hasNext()){
                 iterator.next();
 
-                if (marker==false) {
+                if (!marker) {
                     marker = true;
                 }
                 else {
