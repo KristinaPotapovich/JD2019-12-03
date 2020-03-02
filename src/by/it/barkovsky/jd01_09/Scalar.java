@@ -16,8 +16,6 @@ class Scalar extends Var {
         if (other instanceof Scalar){
             double sum=this.value+((Scalar) other).value;
             return new Scalar(sum);
-            //Scalar op2 = (Scalar) other;
-            //return new Scalar(value.this.value+op2.value);
         }
         else
             return other.add(this);
@@ -30,7 +28,6 @@ class Scalar extends Var {
             return new Scalar(sub);
         }
         else
-           // return other.add(this);
             return new Scalar(-1).mul(other).add(this);
     }
 
@@ -39,8 +36,6 @@ class Scalar extends Var {
         if (other instanceof Scalar){
             double mul=this.value*((Scalar) other).value;
             return new Scalar(mul);
-            //Scalar op2 = (Scalar) other;
-            //return new Scalar(value.this.value+op2.value);
         }
         else
             return other.mul(this);
@@ -67,31 +62,6 @@ class Scalar extends Var {
     @Override
     public String toString() {
         return Double.toString(value);
-        //return "Это класс Scalar";
     }
-/*
-    Scalar (Scalar otherScalar)
-*/
-
-/*
-    @Override
-    public Var add(Var other){
-        if (other instanceof Scalar){
-            Scalar op2 = (Scalar) other;
-            return new Scalar(value.this.value+op2.value);
-        }
-        return other.add(this);
-    }
-    */
-/*
-    @Override
-    public Var sub(Var other){
-        if (other instanceof Scalar){
-            Scalar op2 = (Scalar) other;
-            return new Scalar(value.this.value-((Scalar) other.value));
-        }
-        //return new Scalar(value:-1).mul(other.sub(this))//other.add(this);
-    }
-*/
 
 }

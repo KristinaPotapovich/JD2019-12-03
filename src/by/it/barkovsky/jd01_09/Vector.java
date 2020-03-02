@@ -110,17 +110,5 @@ class Vector extends Var {
         }
         return super.div(other);
     }
-/*
-    @Override
-    public Var add(Var other){
-        if (other instanceof Scalar){
-            Scalar op2= (Scalar) other;
-            double[] op1= Arrays.copyOf(value, value.length);
-            for (int i = 0; i <this.value.length ; i++) {
-                value[i]+=op2.getValue();
-            }
-        }
-        return new Vector();
-    }
- */
+
 }
