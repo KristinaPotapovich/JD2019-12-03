@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 class Scalar extends Var {
     private double value;
-
+    private static ResManager lang = ResManager.INSTANCE;
     Scalar(double value) {
         this.value = value;
     }
@@ -110,7 +110,7 @@ class Scalar extends Var {
         if (this.value != 0) {
             return new Scalar(other.value / this.value);
         }
-        throw new CalcException(ConsoleRunner.lang.get(ErrorMessages.ZERO));
+        throw new CalcException(lang.get(ErrorMessages.ZERO));
     }
 
     @Override
@@ -122,7 +122,7 @@ class Scalar extends Var {
             }
             return new Vector(op1);
         }
-        throw new CalcException(ConsoleRunner.lang.get(ErrorMessages.ZERO));
+        throw new CalcException(lang.get(ErrorMessages.ZERO));
     }
 
     @Override
@@ -140,6 +140,6 @@ class Scalar extends Var {
             }
             return new Matrix(op1);
         }
-        throw new CalcException(ConsoleRunner.lang.get(ErrorMessages.ZERO));
+        throw new CalcException(lang.get(ErrorMessages.ZERO));
     }
 }

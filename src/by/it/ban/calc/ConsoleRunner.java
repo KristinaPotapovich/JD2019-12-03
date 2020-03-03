@@ -8,7 +8,7 @@ import static by.it.ban.calc.Var.printvar;
 import static by.it.ban.calc.Var.sortvar;
 
 public class ConsoleRunner {
-    public static ResManager lang = ResManager.INSTANCE;
+    private static ResManager lang = ResManager.INSTANCE;
     static {
         lang.setLocale(Locale.getDefault());
     }
@@ -22,7 +22,11 @@ public class ConsoleRunner {
         Parser parser = new Parser();
         Printer printer = new Printer();
         LogFile log = null;
-        log = new LogFile();
+        try {
+            log = LogFile.getLogger();
+        } catch (CalcException e) {
+            System.out.println(e.getMessage());
+        }
         try {
             VarFile.load();
         } catch (CalcException e) {
@@ -32,7 +36,7 @@ public class ConsoleRunner {
         while (true) {
             String expression = scanner.next();
             if (expression.equals("end")) {
-                log.close();
+ //               log.close();
                 break;
             }
             if (expression.equals("printvar")) {
