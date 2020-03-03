@@ -4,40 +4,57 @@ import java.util.HashMap;
 import java.util.Map;
 
 abstract class Var implements Operation {
-    private static Map<String,Var> vars=new HashMap<>();
 
-    static Var saveVar(String name,Var var){
-        vars.put(name,var);
-        return var;
-    }
-    static Var createVar(String operand) throws CalcException{
-        operand=operand.trim().replace("\\s+","");
-        if(operand.matches(Patterns.SCALAR))
-            return new Scalar(operand);
-        if(operand.matches(Patterns.VECTOR))
-            return new Vector(operand);
-        if(vars.containsKey(operand))
-            return vars.get(operand);
-        throw  new CalcException("Невозможно создать "+operand);
-    }
+    private static Map<String, Var> vars=new HashMap<>();
+
+
     @Override
-    public Var add(Var other) throws CalcException
-    {
-        throw new CalcException("Операция сложения "+this+"+"+other+" невозможна");
+    public Var add(Var other) throws CalcException {
+        throw new CalcException("Operation " + this + "+" + other + " impossible");
     }
 
     @Override
-    public Var sub(Var other) throws CalcException{
-        throw new CalcException("Операция вычитания "+this+"-"+other+" невозможна");
+    public Var sub(Var other) throws CalcException {
+        throw new CalcException("Operation " + this + "-" + other + " impossible");
     }
 
     @Override
-    public Var mul(Var other) throws CalcException{
-        throw new CalcException("Операция умножения "+this+"*"+other+" невозможна");
+    public Var mul(Var other) throws CalcException {
+        throw new CalcException("Operation " + this + "*" + other + " impossible");
     }
 
     @Override
-    public Var div(Var other) throws CalcException{
-        throw new CalcException("Операция деления "+this+"/"+other+" невозможна");
+    public Var div(Var other) throws CalcException {
+        throw new CalcException("Operation " + this + "/" + other + " impossible");
     }
+
+    @Override
+    public String toString() {
+        return "abstract Var";
+    }
+
+    static Var createVar(String strVar) throws CalcException {
+        if (strVar.matches(Patterns.SCALAR))
+            return new Scalar(strVar);
+        else if (strVar.matches(Patterns.VECTOR))
+            return new Vector(strVar);
+        else if (strVar.matches(Patterns.MATRIX))
+            return new Matrix(strVar);
+        else
+            {
+                Var var = vars.get(strVar);
+                if (var != null) {
+                    return var;
+                } else {
+                    throw new CalcException("Unknown expression: "+strVar);
+                }
+            }
+    }
+
+    static void save(String key, Var value) throws CalcException {
+        vars.put(key,value);
+        VarFile.save(vars);
+
+    }
+
 }

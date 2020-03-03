@@ -1,7 +1,8 @@
 package by.it.drozd.calc;
 
-public class CalcException extends Exception {
+public class CalcException extends Exception{
     public CalcException() {
+        super();
     }
 
     public CalcException(String message) {
@@ -13,10 +14,6 @@ public class CalcException extends Exception {
     }
 
     public CalcException(Throwable cause) {
-        super("ERROR: "+cause);
-    }
-
-    public CalcException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super("ERROR: "+message, cause, enableSuppression, writableStackTrace);
+        super(cause);
     }
 }

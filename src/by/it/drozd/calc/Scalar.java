@@ -3,66 +3,63 @@ package by.it.drozd.calc;
 class Scalar extends Var {
     private double value;
 
-    Scalar(double value) {
-        this.value = value;
-    }
-    Scalar(Scalar scalar){
-        this.value=scalar.value;
-    }
-    Scalar(String strScalar){
-        this.value=Double.parseDouble(strScalar);
-    }
-
     public double getValue() {
         return value;
     }
 
-    @Override
-    public Var add(Var other) throws CalcException{
-        if(other instanceof Scalar){
-            double sum=this.value+((Scalar) other).value;
-            return new Scalar(sum);
-        }else{
-            return other.add(this);
-        }
+    Scalar(double value) {
+        this.value = value;
+    }
+
+    Scalar(Scalar otherScalar) {
+        this.value = otherScalar.value;
+    }
+
+    Scalar(String strValue) {
+        this.value = Double.parseDouble(strValue);
     }
 
     @Override
-    public Var sub(Var other) throws CalcException{
-        if(other instanceof Scalar){
-            double sub=this.value-((Scalar) other).value;
-            return new Scalar(sub);
-        }else{
-            return new Scalar(-1).mul(other).add(this);
+    public Var add(Var other) throws CalcException {
+        if (other instanceof Scalar) {
+            return new Scalar(this.value + ((Scalar) other).value);
         }
+        return other.add(this);
+    }
+
+
+
+    @Override
+    public Var sub(Var other) throws CalcException {
+        if (other instanceof Scalar) {
+            return new Scalar(this.value - ((Scalar) other).value);
+        }
+        return new Scalar(-1).mul(other.sub(this));
     }
 
     @Override
-    public Var mul(Var other) throws CalcException{
-        if(other instanceof Scalar){
-            if(((Scalar) other).value==0)
-                throw new CalcException("Умножение на ноль");
-            double mul=this.value*((Scalar) other).value;
-            return new Scalar(mul);
-        }else{
-            return other.mul(this);
+    public Var mul(Var other) throws CalcException {
+        if (other instanceof Scalar) {
+            return new Scalar(this.value * ((Scalar) other).value);
         }
+        return other.mul(this);
     }
 
     @Override
-    public Var div(Var other) throws CalcException{
-        if(other instanceof Scalar){
-            if(((Scalar) other).value==0)
-                throw new CalcException("Деление на ноль");
-            double div=this.value/((Scalar) other).value;
-            return new Scalar(div);
-        }else{
-            return super.div(other);
+    public Var div(Var other) throws CalcException {
+        if (other instanceof Scalar) {
+            double op2=((Scalar) other).value;
+            if (op2==0){
+                CalcException exception = new CalcException("Omg!! Division by zero");
+                throw exception;
+            }
+            return new Scalar(this.value / ((Scalar) other).value);
         }
+        return super.div(other);
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return Double.toString(value);
     }
 }
