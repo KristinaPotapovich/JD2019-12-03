@@ -22,7 +22,7 @@ class Vector extends Var{
         }
 
     @Override
-    public Var add(Var other) {
+    public Var add(Var other) throws CalcException {
         if(other instanceof Scalar){
             double[] vector=Arrays.copyOf(this.value,this.value.length);
             double scalar=((Scalar)other).getValue();
@@ -42,7 +42,7 @@ class Vector extends Var{
     }
 
     @Override
-    public Var sub(Var other) {
+    public Var sub(Var other) throws CalcException {
         if(other instanceof Scalar){
             double[] vector=Arrays.copyOf(this.value,this.value.length);
             double scalar=((Scalar)other).getValue();
@@ -62,8 +62,10 @@ class Vector extends Var{
     }
 
     @Override
-    public Var mul(Var other) {
+    public Var mul(Var other) throws CalcException{
         if(other instanceof Scalar){
+            if(((Scalar) other).getValue()==0)
+                throw new CalcException("Умножение на ноль");
             double[] vector=Arrays.copyOf(this.value,this.value.length);
             double scalar=((Scalar)other).getValue();
             for (int i = 0; i < vector.length; i++) {
@@ -82,8 +84,10 @@ class Vector extends Var{
             return super.mul(other);
     }
     @Override
-    public Var div(Var other) {
+    public Var div(Var other) throws CalcException{
         if(other instanceof Scalar) {
+            if(((Scalar) other).getValue()==0)
+                throw new CalcException("Деление на ноль");
             double[] vector = Arrays.copyOf(this.value, this.value.length);
             double scalar = ((Scalar) other).getValue();
             for (int i = 0; i < vector.length; i++) {

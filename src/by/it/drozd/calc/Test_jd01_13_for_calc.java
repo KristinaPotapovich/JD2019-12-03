@@ -1,4 +1,4 @@
-package by.it.drozd.jd01_13;
+package by.it.drozd.calc;
 
 
 import org.junit.Test;
