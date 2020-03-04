@@ -11,7 +11,7 @@ import java.util.Map;
 class VarFile {
 
     private static String varFile = getPath("vars.txt", VarFile.class);
-    private static ResManager lang = ResManager.INSTANCE;
+
 
     static String getPath(String fileName, Class<?> aClass) {
         String root = System.getProperty("user.dir");
@@ -33,7 +33,7 @@ class VarFile {
                         }
                     });
         } catch (IOException e) {
-            throw new CalcException(lang.get(ErrorMessages.FILE),e);
+            throw new CalcException(ResManager.get(ErrorMessages.FILE),e);
         }
     }
 
@@ -46,7 +46,7 @@ class VarFile {
                 }
             }
         } catch (FileNotFoundException e) {
-            throw new CalcException(lang.get(ErrorMessages.FILE)+" "+varFile,e);
+            throw new CalcException(ResManager.get(ErrorMessages.FILE)+" "+varFile,e);
 
         }
     }

@@ -5,7 +5,7 @@ package by.it.ban.calc;
 import java.io.IOException;
 
 class Printer {
-    static ResManager lang = ResManager.INSTANCE;
+
     void print(Var var) throws CalcException, IOException {
         LogFile log= LogFile.getLogger();
         if (var != null){
@@ -13,7 +13,7 @@ class Printer {
             log.print(var.toString());
         }
         else
-            throw new CalcException(lang.get(ErrorMessages.UNKNOWN));
+            throw new CalcException(ResManager.get(ErrorMessages.UNKNOWN));
     }
 
 

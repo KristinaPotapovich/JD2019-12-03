@@ -1,6 +1,6 @@
 package by.it.ban.calc;
 
-import by.it.ban.jd02_06.Logger;
+
 
 import java.io.*;
 import java.text.DateFormat;
@@ -9,11 +9,10 @@ import java.util.Date;
 
 class LogFile {
     private static volatile LogFile logger;
-    private static FileWriter out;
+    //private static FileWriter out;
     private static File file;
-    private static ResManager lang = ResManager.INSTANCE;
 
-    private LogFile() throws IOException {
+    private LogFile() {
         file = new File(getPath("log.txt"));
         //out = new FileWriter(file, true);
     }
@@ -26,25 +25,21 @@ class LogFile {
         return fileName;
     }
 
-    static LogFile getLogger() throws CalcException {
+    static LogFile getLogger()  {
         LogFile localLogger = logger;
         if (localLogger == null){
             synchronized (LogFile.class){
                 localLogger=logger;
                 if(localLogger == null){
-                    try {
-                        logger=localLogger=new LogFile();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        throw new CalcException(lang.get(ErrorMessages.FILE));
-                    }
+                      logger= new LogFile();
+//
                 }
             }
         }
         return logger;
     }
 
-    void print(String message) throws IOException {
+    void print(String message) {
         Date d = new Date();
         try (FileWriter out = new FileWriter(file, true))
         {

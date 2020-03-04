@@ -8,25 +8,18 @@ import static by.it.ban.calc.Var.printvar;
 import static by.it.ban.calc.Var.sortvar;
 
 public class ConsoleRunner {
-    private static ResManager lang = ResManager.INSTANCE;
+
     static {
-        lang.setLocale(Locale.getDefault());
+        ResManager.setLocale(Locale.getDefault());
     }
 
-    public ResManager getLang() {
-        return lang;
-    }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Parser parser = new Parser();
         Printer printer = new Printer();
-        LogFile log = null;
-        try {
-            log = LogFile.getLogger();
-        } catch (CalcException e) {
-            System.out.println(e.getMessage());
-        }
+        LogFile log;
+        log = LogFile.getLogger();
         try {
             VarFile.load();
         } catch (CalcException e) {
@@ -45,11 +38,11 @@ public class ConsoleRunner {
                 sortvar();
             }
             else if (expression.equals("en"))
-                lang.setLocale(new Locale("en", "US"));
+                ResManager.setLocale(new Locale("en", "US"));
             else if (expression.equals("ru"))
-                lang.setLocale(new Locale("ru", "RU"));
+                ResManager.setLocale(new Locale("ru", "RU"));
             else if (expression.equals("be"))
-                lang.setLocale(new Locale("be", "BY"));
+                ResManager.setLocale(new Locale("be", "BY"));
             else {
                 Var result = null;
                 try {
