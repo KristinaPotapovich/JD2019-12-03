@@ -1,4 +1,4 @@
-package by.it.akhmelev.jd02_05;
+package by.it.drozd.jd02_05;
 
 public interface Messages {
     String WELCOME="message.welcome";
