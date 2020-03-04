@@ -5,12 +5,15 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
- * a class that operates activities concerning a process of events logging in a calculator
+ * a class that operates activities concerning a process of events logging in a calculator.
+ * Beginning from JD02_06 it became deprecated because of statements of tasks JD02_06.
  */
+@Deprecated
 class Logger {
     /**
      * a list which contains logs while "ConsoleRunner.java" is executing
      */
+    @Deprecated
     private static LinkedList<String> logJournal = new LinkedList<>();
 
     /**
@@ -18,12 +21,14 @@ class Logger {
      * when "ConsoleRunner.java" isn't executing, and where
      * new logs are saved
      */
+    @Deprecated
     private static final String LOG_FILE_PATH = FileAssistant.generateFilePath("log.txt", Logger.class);
 
     /**
      * a String that represent an element, which separates logs when they are to be
      * written in a file
      */
+    @Deprecated
     private static final String LOG_SEPARATOR = "___________________\n";
 
     /*
@@ -68,6 +73,7 @@ class Logger {
      * @return a String representation of all contents of an aforementioned file
      * @throws IOException while reading IOException can be thrown
      */
+    @Deprecated
     private static String readContentsOfFile(BufferedReader reader) throws IOException {
         String line;
         StringBuilder builder = new StringBuilder();
@@ -82,6 +88,7 @@ class Logger {
      *
      * @param log a newly formed log that is to be added to "logJournal"
      */
+    @Deprecated
     static void save(String log) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(LOG_FILE_PATH))) {
             if (logJournal.size() >= 50) {
@@ -101,6 +108,7 @@ class Logger {
      *
      * @return a String representation of contents of "logJournal"
      */
+    @Deprecated
     private static String logJournalToString() {
         StringBuilder sb = new StringBuilder();
         for (String log : logJournal) {

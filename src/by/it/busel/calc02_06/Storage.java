@@ -80,7 +80,7 @@ class Storage {
     static void printvar() {
         String strStorage = storageToString();
         System.out.println(strStorage);
-        Logger.save(Printer.formLog("printvar", strStorage));
+        LoggerSingleton.save(strStorage, "printvar");
     }
 
     /**
@@ -100,7 +100,7 @@ class Storage {
         }
         String strOrderedStorage = text.toString();
         System.out.println(strOrderedStorage);
-        Logger.save(Printer.formLog("sortvar", strOrderedStorage));
+        LoggerSingleton.save(strOrderedStorage, "sortvar");
     }
 
     /**

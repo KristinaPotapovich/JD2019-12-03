@@ -17,6 +17,7 @@ class Printer {
      *
      * @param variable a Var expression called to be printed
      */
+    @Deprecated
     void print(Var variable) {
         System.out.println(variable);
     }
@@ -30,7 +31,7 @@ class Printer {
      */
     void printAndSave(String input, String resultOutput) {
         System.out.println(resultOutput);
-        Logger.save(formLog(input, resultOutput));
+        LoggerSingleton.save(resultOutput, input);
     }
 
     /**
@@ -45,6 +46,7 @@ class Printer {
      * @param element an output from a console
      * @return one separate log that is formed on the basis of input and output of a console
      */
+    @Deprecated
     static String formLog(String input, String element) {
         return dateFormat.format(new Date()) + '\n' + ResourcesManager.get(Message.PRINTER_INPUT)
                 + '\n' + input + '\n' + ResourcesManager.get(Message.PRINTER_OUTPUT) +
