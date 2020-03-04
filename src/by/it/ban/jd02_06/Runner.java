@@ -9,6 +9,6 @@ public class Runner {
 
         log.log("Hello kitty");
         log.log("Hello world");
-        log.log("Goodbye JAVA");
+        log.log("Goodbye!");
     }
 }
