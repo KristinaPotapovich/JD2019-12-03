@@ -75,7 +75,7 @@ abstract class Var implements Operation {
             String sVars = sortVars();
             pw.print(sVars);
         } catch (IOException e) {
-            Logger.getInstance().printAndLog(LanguageManager.get(Messages.error_save_variables) + sFileName);
+            Logger.getInstance().printAndLog(LanguageManager.get(Messages.error_save_variables) + sFileName,null);
         }
     }
 
@@ -86,13 +86,13 @@ abstract class Var implements Operation {
             while (true) {
                 String readedString = br.readLine();
                 if(readedString==null)break;
-                Logger.getInstance().printAndLog(LanguageManager.get(Messages.executing_from_file) + readedString);
+                Logger.getInstance().printAndLog(LanguageManager.get(Messages.executing_from_file) + readedString,null);
                 tmpParser.calc(readedString);
             }
         } catch (IOException e) {
-            Logger.getInstance().printAndLog(LanguageManager.get(Messages.error_reading_variables) + sFileName);
+            Logger.getInstance().printAndLog(LanguageManager.get(Messages.error_reading_variables) + sFileName,null);
         } catch (CalcException e) {
-            Logger.getInstance().printAndLog(LanguageManager.get(Messages.error_parsing_variables) + e.getMessage());
+            Logger.getInstance().printAndLog(LanguageManager.get(Messages.error_parsing_variables) + e.getMessage(),e);
         }
     }
 

@@ -8,14 +8,17 @@ class Logger {
     static private volatile Logger singleInstance;
     static private ArrayDeque<String> logList = new ArrayDeque<>();
     static private String sLogFileName = FHelper.getFileName("log.txt", Logger.class);
+    static private ReportBuilder reportBuilder;
 
     /**
      * Конструктор private. Чтобы никто не вызывал. Только мы сами.
-     * */
-    private Logger(){
+     */
+    private Logger() {
         logList = new ArrayDeque<>();
         sLogFileName = FHelper.getFileName("log.txt", Logger.class);
+        reportBuilder = new ReportBuilderShort();
     }
+
     /**
      * Получить синглетный экземпляр
      */
@@ -28,10 +31,18 @@ class Logger {
             return singleInstance;
         }
     }
+
+    /**
+     * Установим конструктор репорта, который будет применяться для посторения отчёта
+     */
+    void setReportBuilder(ReportBuilder rp) {
+        reportBuilder = rp;
+    }
+
     /**
      * load log into ArrayDeque
      */
-     void loadLog() {
+    void loadLog() {
         try (BufferedReader br = new BufferedReader(new FileReader(sLogFileName))) {
             logList.clear();
             String logString;
@@ -39,7 +50,7 @@ class Logger {
                 logString = br.readLine();
                 if (logString == null) break;
                 logList.addLast(logString);
-                if (logList.size() > 50) logList.removeFirst();
+                if (logList.size() > 50){ logList.removeFirst(); }
             }
         } catch (IOException e) {
             System.out.println(LanguageManager.get(Messages.error_read_log) + e.getMessage());
@@ -48,12 +59,14 @@ class Logger {
 
     /**
      * Показываем результат в консоли и тут же пишем в файл.
+     *
      * @param sMessage - Сообщение, которое надо записать.
      */
-     void printAndLog(String sMessage) {
-        System.out.println(sMessage);
-        logList.addLast(sMessage);
-        if (logList.size() > 50) logList.removeFirst();
+    void printAndLog(String sMessage, CalcException calcException) {
+        String messageToLog=reportBuilder.buildBodyString(sMessage, calcException);
+        System.out.println(messageToLog);
+        logList.addLast(messageToLog);
+        if (logList.size() > 50){ logList.removeFirst(); }
 
         try (PrintWriter pw = new PrintWriter(new FileWriter(sLogFileName))
         ) {

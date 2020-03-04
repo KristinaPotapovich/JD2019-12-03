@@ -100,11 +100,11 @@ class ReversePolishNotation {
             String expression = outString.poll();
 
             if (expression.matches(Patterns.SCALAR))
-                varStack.addFirst(VarCreatorByType.getVarCreatorByType(VarTypes.Scalar).varFromExpression(expression));
+                varStack.addFirst(VarCreatorByType.getVarCreator(VarTypes.Scalar).varFromExpression(expression));
             else if (expression.matches(Patterns.VECTOR))
-                varStack.addFirst(VarCreatorByType.getVarCreatorByType(VarTypes.Vector).varFromExpression(expression));
+                varStack.addFirst(VarCreatorByType.getVarCreator(VarTypes.Vector).varFromExpression(expression));
             else if (expression.matches(Patterns.MATRIX))
-                varStack.addFirst(VarCreatorByType.getVarCreatorByType(VarTypes.Matrix).varFromExpression(expression));
+                varStack.addFirst(VarCreatorByType.getVarCreator(VarTypes.Matrix).varFromExpression(expression));
             else if (expression.matches(Patterns.VARNAME))
                 varStack.addFirst(Var.getCreatedVar(expression));
             else if (expression.matches(Patterns.OPERATION)) {

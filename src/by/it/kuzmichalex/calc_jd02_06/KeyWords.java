@@ -10,6 +10,8 @@ class KeyWords {
     static final String LANGUAGE_BY = "by";
     static final String LANGUAGE_BE = "be";
     static final String LANGUAGE_RU = "ru";
+    static final String REPORT_TYPE_FULL = "full";
+    static final String REPORT_TYPE_SHORT = "short";
     static final String ALL_KEY_WORDS = "," + EXIT + "," + QUIT + "," + END + "," + PRINTVAR + "," + SORTVAR + "," + LANGUAGE_EN + "," + LANGUAGE_BY + "," + LANGUAGE_BE + "," + LANGUAGE_RU + ",";
 
     /**

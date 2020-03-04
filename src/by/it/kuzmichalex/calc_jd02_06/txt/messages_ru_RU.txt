@@ -1,6 +1,6 @@
 messages.error_read_log				=Ошибка чтения лог-файла:
 messages.error_write_log			=Ошибка записи лог-файла:
-messages.calculator_running			=Калькулятор запущен.
+messages.calculator_running			=\n***   Калькулятор запущен. Введите:\n***   что-нибуть вроде 2+2/2 для расчёта,\n***   full, short для смены типа отчёта;\n***   en, by, ru для смены языка\n***   printvar, sortvar, end, quit, exit - если перепробовали всё остальное :)
 messages.expression				=Выражение:
 messages.calculator_stopped			=Калькулятор остановлен.
 messages.error_save_variables			=Ошибка сохранения переменных в файл:
@@ -26,3 +26,5 @@ messages.vector_multipilication_impossible	=Умножение векторов 
 messages.matrix_mul_vector_impossible		=Умножение матрицы на вектор невозможно. не совпадают размерности.
 messages.invalid_variable_name              =Недопустимое имя переменной.
 messages.invalid_variable_name_no_keywords  =Недопустимое имя переменной. Пожалуйста, не используйте ключевые слова:
+messages.set_full_report                    =Установлено полное логирование.
+messages.set_short_report                    =Установлено сокращённое логирование.
