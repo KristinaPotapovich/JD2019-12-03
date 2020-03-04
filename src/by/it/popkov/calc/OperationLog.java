@@ -6,11 +6,13 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
-class Log {
-    static private final String logFullName = CalcFile.fileFullName(Log.class, "log.txt");
+class OperationLog {
+    static private final String logFullName = CalcFile.fileFullName(OperationLog.class, "logOperation.txt");
 
+    public static String getLogFullName() {
+        return logFullName;
+    }
 
     public static void reWriteLog(String newMessage) {
 
