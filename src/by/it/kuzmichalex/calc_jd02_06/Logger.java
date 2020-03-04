@@ -16,7 +16,7 @@ class Logger {
     private Logger() {
         logList = new ArrayDeque<>();
         sLogFileName = FHelper.getFileName("log.txt", Logger.class);
-        reportBuilder = new ReportBuilderShort();
+        reportBuilder = new ReportBuilderFull();
     }
 
     /**

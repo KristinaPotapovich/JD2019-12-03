@@ -1,6 +1,6 @@
 messages.error_read_log				=Памылка чытання лог-файла:
 messages.error_write_log			=Памылка запісу лог-файла:
-messages.calculator_running			Калькулятар запушчаны. Калі ласка, увядзіце:\n *** што-нибуть падобнае на 2 + 2/2 для разліку,\ n*** full, short для змены тыпу справаздачы;\n *** en, by, ru для змены мовы\n *** printvar, sortvar, end, quit, exit-калі пераспрабавалі ўсё астатняе:)
+messages.calculator_running			Калькулятар запушчаны. Калі ласка, увядзіце:\n *** што-нибуть падобнае на 2 + 2/2 для разліку,\n *** full, short для змены тыпу справаздачы;\n *** en, by, ru для змены мовы\n *** printvar, sortvar, end, quit, exit-калі пераспрабавалі ўсё астатняе:)
 messages.expression				=Выраз:
 messages.calculator_stopped			=Калькулятар спынены.
 messages.error_save_variables			=Памылка захавання зменных у файл:
