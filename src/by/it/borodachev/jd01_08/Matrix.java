@@ -4,8 +4,6 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static by.it.borodachev.jd01_08.Patterns.*;
-
 public class Matrix extends Var {
       private double [][] value;
       private int rowLength;
