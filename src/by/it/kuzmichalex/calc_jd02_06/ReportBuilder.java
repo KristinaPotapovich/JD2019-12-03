@@ -1,11 +1,17 @@
 package by.it.kuzmichalex.calc_jd02_06;
 
+/**
+ * Интерфейс для отчётостроителя
+ */
 abstract class ReportBuilder {
     abstract String buildHeaderString();
 
     abstract String buildBodyString(String msg, CalcException e);
 }
 
+/**
+ * Конкретная реализация полного отчётостроителя
+ */
 class ReportBuilderFull extends ReportBuilder {
 
     @Override
@@ -13,6 +19,11 @@ class ReportBuilderFull extends ReportBuilder {
         return "Заголовок Полный отчёт";
     }
 
+    /**
+     * @param message Сообщение для лога
+     * @param e Исключение, информация из которого испорльзуется дл строительства полного лога
+     *          Может быть пустым.
+     */
     @Override
     String buildBodyString(String message, CalcException e) {
         StringBuilder retStr = new StringBuilder();
@@ -36,7 +47,9 @@ class ReportBuilderFull extends ReportBuilder {
     }
 }
 
-
+/**
+ * Реализация сокращённого отчётостроителя
+ */
 class ReportBuilderShort extends ReportBuilder {
 
     @Override
@@ -44,6 +57,11 @@ class ReportBuilderShort extends ReportBuilder {
         return "Заголовок Сокращённый отчёт";
     }
 
+    /**
+     * @param message Сообщение для лога
+     * @param e Исключение, информация из которого испорльзуется дл строительства полного лога
+     *          Может быть пустым.
+     */
     @Override
     String buildBodyString(String message, CalcException e) {
         StringBuilder retStr = new StringBuilder();
