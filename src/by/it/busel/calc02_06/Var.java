@@ -12,18 +12,45 @@ class Var implements Operation {
      * @return a Var expression
      */
     static Var createVar(String operand) throws CalcException {
+        VarCreator varCreator = selectVarCreator(operand);
+        if (varCreator != null) {
+            return varCreator.create(operand);
+        } else {
+            return returnSavedVarIfExists(operand);
+        }
+    }
+
+    /**
+     * a method which return a VarCreator object that is to create a Var's subclass object
+     *
+     * @param operand a String, which can contain an expression from which a Var's subclass object
+     *                can be converted
+     * @return a VarCreator's subclass object, if "operand" contains any Var expression
+     * "null" if "operand" contains no Var expressions
+     */
+    private static VarCreator selectVarCreator(String operand) {
         if (operand.matches(Patterns.SCALAR)) {
-            return new Scalar(operand);
+            return new ScalarCreator();
         } else if (operand.matches(Patterns.VECTOR)) {
-            return new Vector(operand);
+            return new VectorCreator();
         } else if (operand.matches(Patterns.MATRIX)) {
-            return new Matrix(operand);
-        } else if (Storage.containsKey(operand)) {
+            return new MatrixCreator();
+        } else return null;
+    }
+
+    /**
+     * a method which returns a Var's subclass object, which value is found by "key" saved in Storage
+     *
+     * @param operand a String, which can be a "key" saved in Storage
+     * @return a Var's subclass object if Storage contains "operand"
+     * @throws CalcException if "operand" is not found in Storage
+     */
+    private static Var returnSavedVarIfExists(String operand) throws CalcException {
+        if (Storage.containsKey(operand)) {
             return Storage.getVarFromStorage(operand);
         } else {
             throw new CalcException(ResourcesManager.get(Message.ERROR_WRONG_OR_UNSAVED_EXP));
         }
-
     }
 
     @Override
