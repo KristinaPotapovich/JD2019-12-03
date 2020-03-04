@@ -26,3 +26,5 @@ messages.vector_multipilication_impossible	=Множанне вектараў н
 messages.matrix_mul_vector_impossible		=Множанне матрыцы на вектар немагчыма. не супадаюць памернасці.
 messages.invalid_variable_name              =Недапушчальнае імя зменнай:
 messages.invalid_variable_name_no_keywords  =Недапушчальнае імя зменнай. Калі ласка, не выкарыстоўвайце ключавыя словы:
+messages.set_full_report                    =Выбрана поунае лагираванне.
+messages.set_short_report                   =Выбрана частковае лагиравание.

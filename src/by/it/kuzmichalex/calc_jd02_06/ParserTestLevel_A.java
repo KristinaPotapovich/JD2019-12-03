@@ -11,6 +11,7 @@ public class ParserTestLevel_A {
         Parser parser = new Parser();
         String expression = "-123.45";
         double expected = -123.45;
+
         Scalar scalar = (Scalar) parser.calc(expression);
         double actual = Double.parseDouble(scalar.toString());
         assertEquals("Incorrect " + expression, expected, actual, 1e-5);

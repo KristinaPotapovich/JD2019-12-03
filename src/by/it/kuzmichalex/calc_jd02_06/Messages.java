@@ -29,4 +29,6 @@ interface Messages {
     String matrix_mul_vector_impossible = "messages.matrix_mul_vector_impossible";
     String invalid_variable_name = "messages.invalid_variable_name";
     String invalid_variable_name_no_keywords = "messages.invalid_variable_name_no_keywords";
+    String set_full_report = "messages.set_full_report";
+    String set_short_report = "messages.set_short_report";
 }

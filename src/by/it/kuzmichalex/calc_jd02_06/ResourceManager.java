@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 enum ResourceManager {
     INSTANCE;
 
-    private String locationRes = "by.it.kuzmichalex.calc_jd02_05.properties.Messages";
+    private String locationRes = "by.it.kuzmichalex.calc_jd02_06.properties.Messages";
 
     private ResourceBundle resourceBundle;
 
