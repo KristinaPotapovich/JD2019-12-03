@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static by.it.borodachev.jd01_08.Patterns.*;
+
 public class Matrix extends Var {
       private double [][] value;
       private int rowLength;
@@ -45,6 +47,7 @@ public class Matrix extends Var {
         str=str.replace(" ","");
         String[] valStr;
         Pattern pat= Pattern.compile("[^{}][0-9,/.]+");
+ //       Pattern pat= Pattern.compile(MATRIX);
         Matcher m=pat.matcher(str);
         rowLength=0;
         while (m.find()) {rowLength++;};
