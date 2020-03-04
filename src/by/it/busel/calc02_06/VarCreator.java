@@ -7,8 +7,7 @@ abstract class VarCreator {
     /**
      * an abstract method that creates a Var expression on the basis of a method argument
      *
-     * @param expression a String that contains Var's subclasses
      * @return a Var's subclass
      */
-    public abstract Var create(String expression);
+    public abstract Var create();
 }
